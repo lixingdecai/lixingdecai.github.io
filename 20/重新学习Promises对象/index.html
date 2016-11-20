@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>重新学习Promise对象 | 李姓的菜の博客 | null</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#ff5073">
+  
+  
+  <meta name="keywords" content="ES6">
+  <meta name="description" content="最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信小程序的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。
+####简介
+Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重新学习Promise对象">
+<meta property="og:url" content="http://www.lixingdecai.com/20/重新学习Promises对象/index.html">
+<meta property="og:site_name" content="李姓的菜の博客">
+<meta property="og:description" content="最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信小程序的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。
+####简介
+Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/221/701/2217017287-576770798e79e_articlex">
+<meta property="og:updated_time" content="2016-11-20T16:26:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重新学习Promise对象">
+<meta name="twitter:description" content="最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信小程序的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。
+####简介
+Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么">
+<meta name="twitter:image" content="https://sfault-image.b0.upaiyun.com/221/701/2217017287-576770798e79e_articlex">
+  
+    <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
+  
+  <meta name="summary" content="李姓的菜的个人博客 lixingdecai personal blog">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">李姓的菜</h5>
+          <a href="mailto:310227663@qq.com" title="310227663@qq.com" class="mail">310227663@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lixingdecai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3188755773/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>李姓的菜の博客 &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">重新学习Promise对象</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">重新学习Promise对象</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-20T15:52:58.000Z" itemprop="datePublished" class="page-time">
+  2016-11-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-重新学习Promises对象" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">重新学习Promise对象</h1>
+        <div class="post-meta">
+            <time datetime="2016-11-20T15:52:58.000Z" itemprop="datePublished" class="post-time">
+  2016-11-20
+</time>
+
+            
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信<strong>小程序</strong>的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。</p>
+<p>####简介</p>
+<p>Promise：用来传递异步操作的<strong>对象</strong>。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么。</p>
+<p>其实在很早，Promise就实现了。我接触它的时候是jquery(1.5)中$.Deferred.Promise()创建promise对象，JQuery的ajax返回的就是一个deferred对象(deferred 和Promise很容易搞混)。</p>
+<p>####为什么选择</p>
+<blockquote>
+<p>因为使用简单，提供统一的接口来操作异步。代码可读性强，使用类似同步操作的方式操作异步过程，避免了地狱般回调函数的层层嵌套。莫急 后面代码有详细例子。</p>
+</blockquote>
+<p>##ES6 Promise</p>
+<p>而ES6只是将其写进语言标准，统一了用法，并原生的提供了Promise对象。</p>
+<p>####三种状态</p>
+<p>Pending(进行中)、Resolved(已完成)、Rejected(已失败)</p>
+<p>####Api</p>
+<ul>
+<li>Promise.resolve() // 成功返回</li>
+<li>Promise.reject() // 失败返回</li>
+<li>Promise.prototype.then()</li>
+<li>Promise.prototype.catch()</li>
+<li>Promise.all() // 所有的完成 var p = Promise.all([p1,p2,p3]);</li>
+<li>Promise.race() // 竞速，完成一个即可</li>
+</ul>
+<p>传统callback 回调思路：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">地狱般嵌套：</div><div class="line">asyncFunc1(function()&#123;</div><div class="line">  //...</div><div class="line">  asyncFunc2(function()&#123;</div><div class="line">    //...</div><div class="line">    asyncFunc3(function()&#123;</div><div class="line">      //...</div><div class="line">      asyncFunc4(function()&#123;</div><div class="line">        //...</div><div class="line">        asyncFunc5(function()&#123;</div><div class="line">           //... ...</div><div class="line">        &#125;);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>或者你觉得可以稍微优雅点的地狱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">asyncFunc1()&#123;</div><div class="line">  setTimeout(asyncFunc2, 2000);</div><div class="line">&#125;</div><div class="line">asyncFunc2()&#123;</div><div class="line">    setTimeout(asyncFunc3, 2000);</div><div class="line">&#125;</div><div class="line">asyncFunc3()&#123;</div><div class="line">    setTimeout(asyncFunc3, 2000);</div><div class="line">&#125;</div><div class="line">asyncFunc4()&#123;</div><div class="line">    console.log(&apos;asyncFunc4 complete!&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而引用promise的链式处理异步后,代码可读性会强,逻辑会更清晰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function asyncFunc1()&#123;</div><div class="line">  return new Promise(function (resolve, reject) &#123; //...</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">asyncFunc1()</div><div class="line">  .then(asyncFunc2)</div><div class="line">  .then(asyncFunc3)</div><div class="line">  .then(asyncFunc4)</div><div class="line">  .then(asyncFunc5);</div></pre></td></tr></table></figure>
+<p><strong>典型错误</strong>（不过我曾经这样写）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">new Promise(function(res, rej) &#123;</div><div class="line">    console.log(Date.now() + &quot; start setTimeout 1&quot;);</div><div class="line">    setTimeout(res, 2000);</div><div class="line">&#125;).then(function() &#123;</div><div class="line">    console.log(Date.now() + &quot; timeout 1 call back&quot;);</div><div class="line">    new Promise(function(res, rej) &#123;</div><div class="line">        console.log(Date.now() + &quot; start setTimeout 2&quot;);</div><div class="line">        setTimeout(res, 3000);</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(Date.now() + &quot; timeout 2 call back&quot;);</div><div class="line">    &#125;)</div><div class="line">&#125;);</div><div class="line">这样子就陷入无限嵌套的噩梦之中，就不是我们要的promise了。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>then函数的onFulfilled（onCompleted）回调函数会返回一个新的Promise变量，你可以再次调用这个新的Promise变量的then函数</p>
+</blockquote>
+<p>但是问题来了，如果多个异步嵌套中有个方法返回错误(reject)了，promise将会如何处理 将要如何处理。看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var promise3 = new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    reject(&quot;this is promise3 reject catch&quot;);</div><div class="line">&#125;).then((msg) =&gt; &#123;</div><div class="line">    console.log(&apos;1&apos; + msg);</div><div class="line">&#125;).catch((err) =&gt; &#123;</div><div class="line">    console.log(&apos;2&apos; + err);</div><div class="line">&#125;);</div><div class="line">//console: 2this is promise3 reject catch</div></pre></td></tr></table></figure>
+<blockquote>
+<p>当如果多异步嵌套中有一个请求返回错误，会直接往外抛，在catch中被拦截，而多嵌套异步请求将停止。</p>
+</blockquote>
+<p>Promise.all的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">var promise6 = new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    var promiseArr = [];</div><div class="line">    for (var i = 0; i &lt; 5; ++i) &#123;</div><div class="line">        promiseArr.push(new Promise((resolve, reject) =&gt; &#123;</div><div class="line">            console.log(`promise6_$&#123;i&#125;starts`);</div><div class="line">            ((index) =&gt; &#123;</div><div class="line"></div><div class="line">                setTimeout(() =&gt; &#123;</div><div class="line">                    console.log(`before promise6_$&#123;index&#125; resolved`);</div><div class="line">                    resolve(`this is promise6_$&#123;index&#125; resolve`);</div><div class="line">                &#125;, index * 1000);</div><div class="line">            &#125;)(i);</div><div class="line">        &#125;));</div><div class="line">    &#125;</div><div class="line">    resolve(Promise.all(promiseArr));</div><div class="line">&#125;).then((msgArr) =&gt; &#123;</div><div class="line">    console.log(`promise6 all resolved $&#123;msgArr&#125;`);</div><div class="line">&#125;);</div><div class="line">//运行结果</div><div class="line">//promise6_0 starts</div><div class="line">//promise6_1 starts</div><div class="line">//promise6_2 starts</div><div class="line">//promise6_3 starts</div><div class="line">//promise6_4 starts</div><div class="line">//before promise6_0 resolved</div><div class="line">//before promise6_1 resolved</div><div class="line">//before promise6_2 resolved</div><div class="line">//before promise6_3 resolved</div><div class="line">//before promise6_4 resolved</div><div class="line">//promise6 all resolved this is promise6_0 resolve,this is promise6_1 resolve,this is promise6_2 resolve,this is promise6_3 resolve,this is promise6_4 resolve</div></pre></td></tr></table></figure>
+<p>异常处理的相关内容比较少 参考自<a href="http://www.codesec.net/view/493391.html" target="_blank" rel="external">http://www.codesec.net/view/493391.html</a></p>
+<p>##兼容性</p>
+<p>东西是很好用 但是兼容性太差。比如微信小程序就无法使用。也是因此让重新学习Promise的动机.兼容性如下图：</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/221/701/2217017287-576770798e79e_articlex" alt="兼容新"></p>
+<p>###解决方案</p>
+<p>用polyFill的解决。也就是自己引用第三方库，类似Q、When.js、 <a href="http://cdn.bootcss.com/bluebird/3.4.6/bluebird.min.js" target="_blank" rel="external">bluebird</a>(26.7kb) 等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var Promise = require(&apos;../libs/bluebird.min&apos;)  //我用了bluebird.js</div><div class="line"></div><div class="line">function wxPromisify(fn) &#123;  </div><div class="line">  return function (obj = &#123;&#125;) &#123;    </div><div class="line">    return new Promise((resolve, reject) =&gt; &#123;      </div><div class="line">      obj.success = function (res) &#123;        </div><div class="line">        resolve(res)      </div><div class="line">      &#125;      </div><div class="line">      obj.fail = function (res) &#123;        </div><div class="line">        reject(res)      </div><div class="line">      &#125;      </div><div class="line">      fn(obj)    </div><div class="line">    &#125;)  </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = &#123;  </div><div class="line">  wxPromisify: wxPromisify</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;../utils/util&apos;)</div><div class="line"></div><div class="line">var getLocationPromisified = util.wxPromisify(wx.getLocation)</div><div class="line"></div><div class="line">getLocationPromisified(&#123;</div><div class="line">  type: &apos;wgs84&apos;</div><div class="line">&#125;).then(function (res) &#123;</div><div class="line">  var latitude = res.latitude</div><div class="line">  var longitude = res.longitude</div><div class="line">  var speed = res.speed</div><div class="line">  var accuracy = res.accuracy</div><div class="line">&#125;).catch(function () &#123;</div><div class="line">  console.error(&quot;get location failed&quot;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>小程序兼容性参考自<a href="https://segmentfault.com/a/1190000007392283" target="_blank" rel="external">https://segmentfault.com/a/1190000007392283</a></p>
+<p>####Promiseの缺点</p>
+<ol>
+<li>无法取消。一旦新建就会执行，没方法取消</li>
+<li>当处于Pending(进行中)状态的时候，无法得知最近进展到哪个阶段</li>
+</ol>
+
+        </div>
+        
+        <blockquote class="post-copyright">
+    <div class="content">
+        这里写留言或版权声明：<a href="/20/重新学习Promises对象/" target="_blank" rel="external">http://www.lixingdecai.com/20/重新学习Promises对象/</a>
+    </div>
+    <footer>
+        <a href="http://www.lixingdecai.com">
+            <img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg" alt="李姓的菜">
+            李姓的菜
+        </a>
+    </footer>
+</blockquote>
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/12/My-New-Post/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">My New Post</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="重新学习Promises对象" data-title="重新学习Promise对象" data-url="http://www.lixingdecai.com/20/重新学习Promises对象/"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
+</script>
+
+
+
+
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+
+        
+    </ul>
+</div>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "重新学习Promise对象",
+pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://www.lixingdecai.com/20/重新学习Promises对象/" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260833527&web_id=1260833527"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87403984-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>
