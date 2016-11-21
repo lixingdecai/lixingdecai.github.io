@@ -13,22 +13,22 @@
   
   <meta name="keywords" content="ES6">
   <meta name="description" content="最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信小程序的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。
-####简介
-Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么">
+简介Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么。
+其实在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重新学习Promise对象">
 <meta property="og:url" content="http://www.lixingdecai.com/20/重新学习Promises对象/index.html">
 <meta property="og:site_name" content="李姓的菜の博客">
 <meta property="og:description" content="最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信小程序的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。
-####简介
-Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么">
+简介Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么。
+其实在">
 <meta property="og:image" content="https://sfault-image.b0.upaiyun.com/221/701/2217017287-576770798e79e_articlex">
-<meta property="og:updated_time" content="2016-11-20T16:26:58.000Z">
+<meta property="og:updated_time" content="2016-11-21T01:20:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重新学习Promise对象">
 <meta name="twitter:description" content="最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信小程序的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。
-####简介
-Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么">
+简介Promise：用来传递异步操作的对象。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么。
+其实在">
 <meta name="twitter:image" content="https://sfault-image.b0.upaiyun.com/221/701/2217017287-576770798e79e_articlex">
   
     <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
@@ -160,6 +160,13 @@ Promise：用来传递异步操作的对象。作为一个异步编程的一种�
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么选择"><span class="post-toc-number">2.</span> <span class="post-toc-text">为什么选择</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ES6-Promise"><span class="post-toc-number"></span> <span class="post-toc-text">ES6 Promise</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三种状态"><span class="post-toc-number">1.</span> <span class="post-toc-text">三种状态</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Api-amp-实战"><span class="post-toc-number">2.</span> <span class="post-toc-text">Api & 实战</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#兼容性"><span class="post-toc-number"></span> <span class="post-toc-text">兼容性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决方案-小程序"><span class="post-toc-number">1.</span> <span class="post-toc-text">解决方案(小程序)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Promiseの缺点"><span class="post-toc-number"></span> <span class="post-toc-text">Promiseの缺点</span></a>
+        </nav>
+    </aside>
+    
 <article id="post-重新学习Promises对象" 
   class="post-article article-type-post" itemprop="blogPost">
 
@@ -176,19 +183,14 @@ Promise：用来传递异步操作的对象。作为一个异步编程的一种�
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>最早接触Promise的时候是在jquery,当时看的懵懵懂懂,没有去深入研究，只处于知道怎么用的阶段。现在在写微信<strong>小程序</strong>的时候发现不能使用ES6中的Promises，才发现自己知识的薄弱，查查资料，深度全面的了解下Promise。</p>
-<p>####简介</p>
-<p>Promise：用来传递异步操作的<strong>对象</strong>。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么。</p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Promise：用来传递异步操作的<strong>对象</strong>。作为一个异步编程的一种解决方案而生。Promise的中文是承诺，对未来发生的许诺。成功会怎样，失败了又会返回什么。</p>
 <p>其实在很早，Promise就实现了。我接触它的时候是jquery(1.5)中$.Deferred.Promise()创建promise对象，JQuery的ajax返回的就是一个deferred对象(deferred 和Promise很容易搞混)。</p>
-<p>####为什么选择</p>
-<blockquote>
+<h4 id="为什么选择"><a href="#为什么选择" class="headerlink" title="为什么选择"></a>为什么选择</h4><blockquote>
 <p>因为使用简单，提供统一的接口来操作异步。代码可读性强，使用类似同步操作的方式操作异步过程，避免了地狱般回调函数的层层嵌套。莫急 后面代码有详细例子。</p>
 </blockquote>
-<p>##ES6 Promise</p>
-<p>而ES6只是将其写进语言标准，统一了用法，并原生的提供了Promise对象。</p>
-<p>####三种状态</p>
-<p>Pending(进行中)、Resolved(已完成)、Rejected(已失败)</p>
-<p>####Api</p>
-<ul>
+<h2 id="ES6-Promise"><a href="#ES6-Promise" class="headerlink" title="ES6 Promise"></a>ES6 Promise</h2><p>而ES6只是将其写进语言标准，统一了用法，并原生的提供了Promise对象。</p>
+<h4 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h4><p>Pending(进行中)、Resolved(已完成)、Rejected(已失败)</p>
+<h4 id="Api-amp-实战"><a href="#Api-amp-实战" class="headerlink" title="Api &amp; 实战"></a>Api &amp; 实战</h4><ul>
 <li>Promise.resolve() // 成功返回</li>
 <li>Promise.reject() // 失败返回</li>
 <li>Promise.prototype.then()</li>
@@ -215,17 +217,14 @@ Promise：用来传递异步操作的对象。作为一个异步编程的一种�
 <p>Promise.all的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">var promise6 = new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    var promiseArr = [];</div><div class="line">    for (var i = 0; i &lt; 5; ++i) &#123;</div><div class="line">        promiseArr.push(new Promise((resolve, reject) =&gt; &#123;</div><div class="line">            console.log(`promise6_$&#123;i&#125;starts`);</div><div class="line">            ((index) =&gt; &#123;</div><div class="line"></div><div class="line">                setTimeout(() =&gt; &#123;</div><div class="line">                    console.log(`before promise6_$&#123;index&#125; resolved`);</div><div class="line">                    resolve(`this is promise6_$&#123;index&#125; resolve`);</div><div class="line">                &#125;, index * 1000);</div><div class="line">            &#125;)(i);</div><div class="line">        &#125;));</div><div class="line">    &#125;</div><div class="line">    resolve(Promise.all(promiseArr));</div><div class="line">&#125;).then((msgArr) =&gt; &#123;</div><div class="line">    console.log(`promise6 all resolved $&#123;msgArr&#125;`);</div><div class="line">&#125;);</div><div class="line">//运行结果</div><div class="line">//promise6_0 starts</div><div class="line">//promise6_1 starts</div><div class="line">//promise6_2 starts</div><div class="line">//promise6_3 starts</div><div class="line">//promise6_4 starts</div><div class="line">//before promise6_0 resolved</div><div class="line">//before promise6_1 resolved</div><div class="line">//before promise6_2 resolved</div><div class="line">//before promise6_3 resolved</div><div class="line">//before promise6_4 resolved</div><div class="line">//promise6 all resolved this is promise6_0 resolve,this is promise6_1 resolve,this is promise6_2 resolve,this is promise6_3 resolve,this is promise6_4 resolve</div></pre></td></tr></table></figure>
 <p>异常处理的相关内容比较少 参考自<a href="http://www.codesec.net/view/493391.html" target="_blank" rel="external">http://www.codesec.net/view/493391.html</a></p>
-<p>##兼容性</p>
-<p>东西是很好用 但是兼容性太差。比如微信小程序就无法使用。也是因此让重新学习Promise的动机.兼容性如下图：</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>东西是很好用 但是兼容性太差。比如微信小程序就无法使用。也是因此让重新学习Promise的动机.兼容性如下图：</p>
 <p><img src="https://sfault-image.b0.upaiyun.com/221/701/2217017287-576770798e79e_articlex" alt="兼容新"></p>
-<p>###解决方案</p>
-<p>用polyFill的解决。也就是自己引用第三方库，类似Q、When.js、 <a href="http://cdn.bootcss.com/bluebird/3.4.6/bluebird.min.js" target="_blank" rel="external">bluebird</a>(26.7kb) 等。</p>
+<h4 id="解决方案-小程序"><a href="#解决方案-小程序" class="headerlink" title="解决方案(小程序)"></a>解决方案(小程序)</h4><p>用polyFill的解决。也就是自己引用第三方库，类似Q、When.js、 <a href="http://cdn.bootcss.com/bluebird/3.4.6/bluebird.min.js" target="_blank" rel="external">bluebird</a>(26.7kb) 等。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var Promise = require(&apos;../libs/bluebird.min&apos;)  //我用了bluebird.js</div><div class="line"></div><div class="line">function wxPromisify(fn) &#123;  </div><div class="line">  return function (obj = &#123;&#125;) &#123;    </div><div class="line">    return new Promise((resolve, reject) =&gt; &#123;      </div><div class="line">      obj.success = function (res) &#123;        </div><div class="line">        resolve(res)      </div><div class="line">      &#125;      </div><div class="line">      obj.fail = function (res) &#123;        </div><div class="line">        reject(res)      </div><div class="line">      &#125;      </div><div class="line">      fn(obj)    </div><div class="line">    &#125;)  </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = &#123;  </div><div class="line">  wxPromisify: wxPromisify</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;../utils/util&apos;)</div><div class="line"></div><div class="line">var getLocationPromisified = util.wxPromisify(wx.getLocation)</div><div class="line"></div><div class="line">getLocationPromisified(&#123;</div><div class="line">  type: &apos;wgs84&apos;</div><div class="line">&#125;).then(function (res) &#123;</div><div class="line">  var latitude = res.latitude</div><div class="line">  var longitude = res.longitude</div><div class="line">  var speed = res.speed</div><div class="line">  var accuracy = res.accuracy</div><div class="line">&#125;).catch(function () &#123;</div><div class="line">  console.error(&quot;get location failed&quot;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>小程序兼容性参考自<a href="https://segmentfault.com/a/1190000007392283" target="_blank" rel="external">https://segmentfault.com/a/1190000007392283</a></p>
-<p>####Promiseの缺点</p>
-<ol>
+<h3 id="Promiseの缺点"><a href="#Promiseの缺点" class="headerlink" title="Promiseの缺点"></a>Promiseの缺点</h3><ol>
 <li>无法取消。一旦新建就会执行，没方法取消</li>
 <li>当处于Pending(进行中)状态的时候，无法得知最近进展到哪个阶段</li>
 </ol>
