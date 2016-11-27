@@ -136,7 +136,7 @@
                 postShare = $('#post-share'),
                 fab = $('#share-fab'),
                 sns = $$('.share-sns'),
-                summary = meta.summary, 
+                summary = meta.summary,
                 api = 'http://www.jiathis.com/send/?webid={service}&url=' + meta.url + '&title=' + meta.title + '&summary=' + summary + '&pic=' + location.protocol + '//' + location.host + meta.pic;
 
             function goShare(service) {
@@ -307,4 +307,9 @@
     Waves.attach('.global-share li', ['waves-block']);
     Waves.attach('.article-tag-list-link, #page-nav a, #page-nav span', ['waves-button']);
 
+    // 控制台打印图标
+    console.log("%c","padding:100px 400px;line-height:300px;background:url(http://ww4.sinaimg.cn/mw690/9b18a834gw1fa6pzzzs8wg20a005nkjl.gif) no-repeat;");
+    console.log("welcom to lixingdecai's blog");
+    console.log("扣扣 微信 微博搜索‘李姓的菜’联系我");
+VM352:1
 })(window, document);
