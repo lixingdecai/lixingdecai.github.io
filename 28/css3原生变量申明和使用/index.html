@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>css3原生变量申明和使用 | 李姓的菜の博客 | null</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#ff5073">
+  
+  
+  <meta name="keywords" content="css">
+  <meta name="description" content="虽然sass、less或者刚出的Stylus这些预编译的css的出现，让我们前端开发变得更方便和简洁。但在一定层度上有增加了工程的复杂度，前端现在百花齐放，各种技术和工具的出现让人眼花缭乱。我个人看法是技术在需要的时候用，不要只为技术而技术。尽量保持工程的单一。所以看到这个css原生的变量出现，有点小激动。
+原文
+介绍变量的定义 可以让我们在错杂庞大的css中抽象出一个便于维护和使用的对象。
+使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3原生变量申明和使用">
+<meta property="og:url" content="http://www.lixingdecai.com/28/css3原生变量申明和使用/index.html">
+<meta property="og:site_name" content="李姓的菜の博客">
+<meta property="og:description" content="虽然sass、less或者刚出的Stylus这些预编译的css的出现，让我们前端开发变得更方便和简洁。但在一定层度上有增加了工程的复杂度，前端现在百花齐放，各种技术和工具的出现让人眼花缭乱。我个人看法是技术在需要的时候用，不要只为技术而技术。尽量保持工程的单一。所以看到这个css原生的变量出现，有点小激动。
+原文
+介绍变量的定义 可以让我们在错杂庞大的css中抽象出一个便于维护和使用的对象。
+使用">
+<meta property="og:image" content="http://image.zhangxinxu.com/image/blog/201611/2016-11-26_195612.png">
+<meta property="og:updated_time" content="2016-12-03T13:42:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css3原生变量申明和使用">
+<meta name="twitter:description" content="虽然sass、less或者刚出的Stylus这些预编译的css的出现，让我们前端开发变得更方便和简洁。但在一定层度上有增加了工程的复杂度，前端现在百花齐放，各种技术和工具的出现让人眼花缭乱。我个人看法是技术在需要的时候用，不要只为技术而技术。尽量保持工程的单一。所以看到这个css原生的变量出现，有点小激动。
+原文
+介绍变量的定义 可以让我们在错杂庞大的css中抽象出一个便于维护和使用的对象。
+使用">
+<meta name="twitter:image" content="http://image.zhangxinxu.com/image/blog/201611/2016-11-26_195612.png">
+  
+    <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
+  
+  <meta name="summary" content="李姓的菜的个人博客 lixingdecai personal blog">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">李姓的菜</h5>
+          <a href="mailto:310227663@qq.com" title="310227663@qq.com" class="mail">310227663@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lixingdecai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3188755773/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>李姓的菜の博客 &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css3原生变量申明和使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">css3原生变量申明和使用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-27T16:05:06.000Z" itemprop="datePublished" class="page-time">
+  2016-11-28
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用例"><span class="post-toc-number">3.</span> <span class="post-toc-text">用例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子一"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">例子一</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子二"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">例子二</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子三"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">例子三</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子四"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">例子四</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子五"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">例子五</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子六"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">例子六</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子七"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">例子七</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子八"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">例子八</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子九"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">例子九</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子十"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">例子十</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子十一"><span class="post-toc-number">3.11.</span> <span class="post-toc-text">例子十一</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#兼容性"><span class="post-toc-number">4.</span> <span class="post-toc-text">兼容性</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-css3原生变量申明和使用" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css3原生变量申明和使用</h1>
+        <div class="post-meta">
+            <time datetime="2016-11-27T16:05:06.000Z" itemprop="datePublished" class="post-time">
+  2016-11-28
+</time>
+
+            
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>虽然sass、less或者刚出的Stylus这些预编译的css的出现，让我们前端开发变得更方便和简洁。但在一定层度上有增加了工程的复杂度，前端现在百花齐放，各种技术和工具的出现让人眼花缭乱。我个人看法是技术在需要的时候用，不要只为技术而技术。尽量保持工程的单一。所以看到这个css原生的变量出现，有点小激动。</p>
+<p><a href="https://drafts.csswg.org/css-variables/" target="_blank" rel="external">原文</a></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>变量的定义 可以让我们在错杂庞大的css中抽象出一个便于维护和使用的对象。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">变量定义： --*</div><div class="line">使用变量： var(--*)</div><div class="line">命名规范： 不能出现 &#123; &#125; [ ] ; ! % $等特殊字符。命名还是比较宽松的，可以为数字、字母、横线、下滑线或者中文等组成。</div><div class="line">ps：css里面是不区分大小写的，但是定义变量的时候可以使用大写，建议还是根据css的规范全都使用小写。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>所以css变量定义 也分全局和局部</p>
+<ul>
+<li>全局变量: 定义在 body {} 或者 :root{} 里面</li>
+<li>局部变量: 定义在你需要定义的父节点选择器上 例如:div.class1{}里面。</li>
+</ul>
+</blockquote>
+<p>不用太纠结上面的概念性，直接看下面的例子就好</p>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><h4 id="例子一"><a href="#例子一" class="headerlink" title="例子一"></a>例子一</h4><p>在根节点上定义全局变量，变量全局可用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">:root &#123;</div><div class="line">  --main-color: #06c;</div><div class="line">  --accent-color: #006;</div><div class="line">&#125;</div><div class="line">/* The rest of the CSS file */</div><div class="line">#foo h1 &#123;</div><div class="line">  color: var(--main-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="例子二"><a href="#例子二" class="headerlink" title="例子二"></a>例子二</h4><p>变量定义 <em>区分</em> 大小写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    div &#123;</div><div class="line">        color: #000;</div><div class="line">        --foo: red;</div><div class="line">        --FOO: yellow;</div><div class="line">    &#125;</div><div class="line">    .theLineColor &#123;</div><div class="line">        color: var(--foo);</div><div class="line">    &#125;</div><div class="line">    .secondColor &#123;</div><div class="line">        color: var(--FOO);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div class=&quot;theLineColor&quot;&gt;</div><div class="line">        aaaaaaa</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div dir=&quot;&quot; class=&quot;secondColor&quot;&gt;</div><div class="line">        bbbbb</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p>运行结果：<style> body { –color: 20px; background-color: #369; background-color: var(–color, #cd0000); } div{ color: #000; –foo: red; –FOO: yellow; } .theLineColor{ color:var(–foo); } .secondColor{ color:var(–FOO); }</style><body> <div class="theLineColor"> aaaaaaa </div> <div dir="" class="secondColor"> bbbbb </div></body></p>
+<h4 id="例子三"><a href="#例子三" class="headerlink" title="例子三"></a>例子三</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--foo: if(x &gt; 5) this.width = 10;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>While this value is obviously useless as a variable, as it would be invalid in any normal property, it might be read and acted on by JavaScript.</p>
+</blockquote>
+<p>反正我是没闹明白官文里面是几个意思，知道怎么使用的可以留个言告诉我下</p>
+<h4 id="例子四"><a href="#例子四" class="headerlink" title="例子四"></a>例子四</h4><p>继承父类选择器的样式的定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">:root &#123;</div><div class="line">  --header-color: #06c;</div><div class="line">&#125;</div><div class="line"></div><div class="line">h1 &#123;</div><div class="line">  background-color: var(--header-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="例子五"><a href="#例子五" class="headerlink" title="例子五"></a>例子五</h4><p>优先级顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">:root &#123; --color: blue; &#125;</div><div class="line">div &#123; --color: green; &#125;</div><div class="line">#alert &#123; --color: red; &#125;</div><div class="line">* &#123; color: var(--color); &#125;</div><div class="line"></div><div class="line">&lt;p&gt;我的紫色继承于根元素&lt;/p&gt;</div><div class="line">&lt;div&gt;我的绿色来自直接设置&lt;/div&gt;</div><div class="line">&lt;div id=&apos;alert&apos;&gt;</div><div class="line">  ID选择器权重更高，因此阿拉是红色！</div><div class="line">  &lt;p&gt;我也是红色，占了继承的光&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><style> :root { –color: purple; } div { –color: green; } #alert { –color: red; } * { color: var(–color); }</style></p><p>我的紫色继承于根元素</p><div>我的绿色来自直接设置</div><div id="alert"> ID选择器权重更高，因此这行是红色！ <p>我也是红色，占了继承的光</p></div><p></p>
+<h4 id="例子六"><a href="#例子六" class="headerlink" title="例子六"></a>例子六</h4><p>变量可以根据不同语言单独保存，对需要国际化的网站很方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">:root,</div><div class="line">:root:lang(en) &#123;--external-link: &quot;external link&quot;;&#125;</div><div class="line">:root:lang(de) &#123;--external-link: &quot;externer Link&quot;;&#125;</div><div class="line"></div><div class="line">a[href^=&quot;http&quot;]::after &#123;content: &quot; (&quot; var(--external-link) &quot;)&quot;&#125;</div></pre></td></tr></table></figure>
+<p><style> :root, :root:lang(en) { –external-link: “external link”; } :root:lang(de) { –external-link: “externer Link”; }a[href^=”http”]::after { content: “ (“ var(–external-link) “)”; }</style><a href="http://www.meiyou.com" target="_blank" rel="external">美柚</a></p>
+<h4 id="例子七"><a href="#例子七" class="headerlink" title="例子七"></a>例子七</h4><p>循环依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">:root &#123;</div><div class="line">  --main-color: #c06;</div><div class="line">  --accent-background: linear-gradient(to top, var(--main-color), white);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="例子八"><a href="#例子八" class="headerlink" title="例子八"></a>例子八</h4><p>没有 <em>任何作用</em> 的互相引用，而且他们计算的都是个初始数值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">:root &#123;</div><div class="line">  --one: calc(var(--two) + 20px);</div><div class="line">  --two: calc(var(--one) - 20px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="例子九"><a href="#例子九" class="headerlink" title="例子九"></a>例子九</h4><p>变量的计算和引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;one&gt;&lt;two&gt;&lt;three /&gt;&lt;/two&gt;&lt;/one&gt;</div><div class="line">one   &#123; --foo: 10px; &#125;</div><div class="line">two   &#123; --bar: calc(var(--foo) + 10px); &#125;</div><div class="line">three &#123; --foo: calc(var(--bar) + 10px); &#125;</div></pre></td></tr></table></figure>
+<h4 id="例子十"><a href="#例子十" class="headerlink" title="例子十"></a>例子十</h4><p>这是个 <em>错误</em> 的定义例子，变量的定义不能在属性名上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.foo &#123;</div><div class="line">  --side: margin-top;</div><div class="line">  var(--side): 20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="例子十一"><a href="#例子十一" class="headerlink" title="例子十一"></a>例子十一</h4><p>在组件中使用,可以覆盖新想要覆盖的变量属性。可以灵活应用于组件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/* In the component’s style: */</div><div class="line">.component .header &#123;</div><div class="line">  color: var(--header-color, blue);</div><div class="line">&#125;</div><div class="line">.component .text &#123;</div><div class="line">  color: var(--text-color, black);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* In the larger application’s style: */</div><div class="line">.component &#123;</div><div class="line">  --text-color: #080;</div><div class="line">  /* header-color isn’t set,</div><div class="line">     and so remains blue,</div><div class="line">     the fallback value */</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div class=&quot;component&quot;&gt;</div><div class="line">  &lt;div class=&quot;header&quot;&gt;header</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div class=&quot;text&quot;&gt;text&lt;/div&gt;</div><div class="line">  &lt;div&gt;component&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>#### 响应式使用例子</p>
+<p>在复杂的响应式布局中也可以使用变量的定义，根据不同分辨率的环境，设置不同的变量参数，达到相应变化的目的</p>
+<p><a href="http://www.zhangxinxu.com/study/201611/css-var-media-query-layout.html" target="_blank" rel="external">张鑫旭的响应式例子</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.box &#123;</div><div class="line">    --columns: 4;</div><div class="line">    --margins: calc(24px / var(--columns));</div><div class="line">    --space: calc(4px * var(--columns));</div><div class="line">    --fontSize: calc(20px - 4 / var(--columns));</div><div class="line">&#125;</div><div class="line">@media screen and (max-width: 1200px) &#123;</div><div class="line">    .box &#123;</div><div class="line">        --columns: 3;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (max-width: 900px) &#123;</div><div class="line">    .box &#123;</div><div class="line">        --columns: 2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (max-width: 600px) &#123;</div><div class="line">    .box &#123;</div><div class="line">        --columns: 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容性是绿油油的片 <img src="http://image.zhangxinxu.com/image/blog/201611/2016-11-26_195612.png" alt=""></p>
+<p>ps: <em>这是编辑草稿的公开副本。它仅供讨论，并可随时更改。其在这里的出版并不意味着W3C认可其内容。</em> <a href="https://drafts.csswg.org/css-variables/" target="_blank" rel="external">官方文档</a></p>
+
+        </div>
+        
+        <blockquote class="post-copyright">
+    <div class="content">
+        声明引用：<a href="/28/css3原生变量申明和使用/" target="_blank" rel="external">http://www.lixingdecai.com/28/css3原生变量申明和使用/</a>
+    </div>
+    <footer>
+        <a href="http://www.lixingdecai.com">
+            <img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg" alt="李姓的菜">
+            李姓的菜
+        </a>
+    </footer>
+</blockquote>
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/27/敏捷开发写旅游攻略/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">敏捷开发玩旅游--福建霞浦.大嵛山岛</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="css3原生变量申明和使用" data-title="css3原生变量申明和使用" data-url="http://www.lixingdecai.com/28/css3原生变量申明和使用/"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
+</script>
+
+
+
+
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢爷赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "css3原生变量申明和使用",
+pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://www.lixingdecai.com/28/css3原生变量申明和使用/" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260833527&web_id=1260833527"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87403984-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

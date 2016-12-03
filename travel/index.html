@@ -23,14 +23,73 @@
         <meta name="twitter:description" content="快乐工作 认真生活">
 
         <link rel="icon" type="image/x-icon" href="/favicon.png">
-
-        <link rel="stylesheet" href="/css/uno.css">
-        <link rel="stylesheet" href="/css/highlight.css">
-        <link rel="stylesheet" href="/css/archive.css">
-        <link rel="stylesheet" href="/css/china-social-icon.css">
-
     </head>
+    <style>
+
+        .a {
+            color: #000;
+            /*--foo: red;*/
+            --FOO: yellow;
+            --foo: if(x > 5) this.width = 10;
+        }
+        .theLineColor {
+            color: var(--foo);
+        }
+        .secondColor {
+            color: var(--FOO);
+        }
+
+    </style>
     <body>
-      is my travel!
+        is my travel!
+        <div class="theLineColor">
+            aaaaaaa
+        </div>
+        <div dir="" class="secondColor">
+            bbbbb
+        </div>
+        <style>
+            :root {
+                --color: purple;
+            }
+            div {
+                --color: green;
+            }
+            #alert {
+                --color: red;
+            }
+            * {
+                color: var(--color);
+            }
+
+        </style>
+        <p>我的紫色继承于根元素</p>
+        <div>我的绿色来自直接设置</div>
+        <div id="alert">
+            ID选择器权重更高，因此阿拉是红色！
+            <p>我也是红色，占了继承的光</p>
+        </div>
+        <style>
+            :root,
+            :root:lang(en) {
+                --external-link: "external link";
+            }
+            :root:lang(de) {
+                --external-link: "externer Link";
+            }
+
+            a[href^="http"]::after {
+                content: " (" var(--external-link) ")";
+            }
+        </style>
+        <a href="http://www.meiyou.com" target="_blank" rel="external">美柚</a>
+        <style>
+        :root {
+          --one: calc(var(--two) + 20px);
+          --two: calc(var(--one) - 20px);
+        }
+        </style>
+        <div class="aaa" style="height:200px;width:200px;background-color:#55073">
+        </div>
     </body>
 </html>
