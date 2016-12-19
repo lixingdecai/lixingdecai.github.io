@@ -25,7 +25,7 @@
 介绍变量的定义 可以让我们在错杂庞大的css中抽象出一个便于维护和使用的对象。
 使用">
 <meta property="og:image" content="http://www.lixingdecai.com/img/2016-11-27-1.png">
-<meta property="og:updated_time" content="2016-12-12T00:52:34.000Z">
+<meta property="og:updated_time" content="2016-12-18T04:12:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css3原生变量申明和使用">
 <meta name="twitter:description" content="虽然sass、less或者刚出的Stylus这些预编译的css的出现，让我们前端开发变得更方便和简洁。但在一定层度上有增加了工程的复杂度，前端现在百花齐放，各种技术和工具的出现让人眼花缭乱。我个人看法是技术在需要的时候用，不要只为技术而技术。尽量保持工程的单一。所以看到这个css原生的变量出现，有点小激动。
@@ -197,7 +197,7 @@
 </ul>
 </blockquote>
 <p>不用太纠结上面的概念性，直接看下面的例子就好</p>
-<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><p>本例子因为使用markdown编译 会把–符号做特除处理，所以为方便大家直观的理解，样式直接写在行内。 原生变量的使用，已使用在微信小程序上，亲测有效，而且很方便。使用的好可以减小一定的代码量，特别是在微信小程序1M大小的限制。</p>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><p>本例子因为使用markdown编译 会把–符号做特除处理，所以为方便大家直观的理解，样式直接写在行内。 原生变量的使用，已使用在微信小程序上测试使用，虽然很方便，但是只在IOS上能完美兼容，在大部分android手机上还是有问题，使用在生产上还需谨慎。</p>
 <h4 id="例子一"><a href="#例子一" class="headerlink" title="例子一"></a>例子一</h4><p>在根节点上定义全局变量，变量全局可用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">:root &#123;</div><div class="line">  --main-color: #06c;</div><div class="line">  --accent-color: #006;</div><div class="line">&#125;</div><div class="line">/* The rest of the CSS file */</div><div class="line">#foo h1 &#123;</div><div class="line">  color: var(--main-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="例子二"><a href="#例子二" class="headerlink" title="例子二"></a>例子二</h4><p>变量定义 <em>区分</em> 大小写</p>
@@ -305,7 +305,14 @@
     </div>   
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/16/my-interview-question/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">可以当做面试题的知识点</h4>
+      </a>
+    </div>
   
 
   
