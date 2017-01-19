@@ -30,16 +30,16 @@
                     </el-form-item>
                     <el-button type="primary" @click="onSubmit()">按钮</el-button>
                 </div>
-                <el-form-item label="年终" v-if="visible">
+                <!-- <el-form-item label="年终" >
                     <el-input v-model="message"></el-input>
                     <img src="http://ww3.sinaimg.cn/mw690/726bc81cgw1fbre1lh6dmg20go0i2e83.gif" class="image">
-                </el-form-item>
+                </el-form-item> -->
             </el-form>
 
-            <!-- <el-dialog v-model="" title="我去！">
-                <p v-model="message">你的年终：</p>
-
-            </el-dialog> -->
+            <el-dialog v-model="visible" title="我去！">
+                  <el-input v-model="message"></el-input>
+                  <img src="http://ww3.sinaimg.cn/mw690/726bc81cgw1fbre1lh6dmg20go0i2e83.gif" class="image">
+            </el-dialog>
         </div>
     </body>
     <!-- 先引入 Vue -->
@@ -101,7 +101,7 @@
                     // var d = 365, if(this.dateBox) {   d = this.dayNum; }
                     var aa = this.num * this.tt * this.dayNum;
                     this.visible = true;
-                    this.message = aa;
+                    this.message = '你的年终：' + aa;
                     this.$message.error('以官方结果为准！');
                     console.log('submit!', this.message);
                 }
