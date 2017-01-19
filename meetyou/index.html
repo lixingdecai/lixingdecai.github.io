@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- 引入样式 -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    </head>
+    <body>
+        <div id="app">
+            <el-form label-width="80px">
+                <div v-if="!visible">
+                    <el-form-item label="薪资">
+                        <el-input v-model="num"></el-input>
+                    </el-form-item>
+                    <el-form-item label="绩效分数">
+                        <el-input-number v-model="t" :min="1" :max="5"></el-input-number>
+                    </el-form-item>
+                    <!-- <el-form-item label="入职满一年">
+                  <el-radio-group>
+                    <el-radio label="是" @click='dateBox = false'></el-radio>
+                    <el-radio label="否" @click='dateBox = true'></el-radio>
+                  </el-radio-group>
+                </el-form-item> -->
+
+                    <el-form-item label="入职日期" v-if="dateBox">
+                        <el-col :span="11">
+                            <el-date-picker type="date" placeholder="选择日期" v-model="date1" style="width: 100%;"></el-date-picker>
+                        </el-col>
+                    </el-form-item>
+                    <el-button type="primary" @click="onSubmit()">按钮</el-button>
+                </div>
+                <el-form-item label="年终" v-if="visible">
+                    <el-input v-model="message"></el-input>
+                    <img src="http://ww3.sinaimg.cn/mw690/726bc81cgw1fbre1lh6dmg20go0i2e83.gif" class="image">
+                </el-form-item>
+            </el-form>
+
+            <!-- <el-dialog v-model="" title="我去！">
+                <p v-model="message">你的年终：</p>
+
+            </el-dialog> -->
+        </div>
+    </body>
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    visible: false,
+                    dateBox: true,
+                    form: {
+                        num: '',
+                        region: '',
+                        date1: '',
+                        date2: '',
+                        delivery: false,
+                        type: [],
+                        resource: '',
+                        desc: ''
+                    },
+                    message: '没算出来',
+                    num: '',
+                    date1: '',
+                    dayNum: 365,
+                    t: 2,
+                    tt: 1
+                }
+            },
+            methods: {
+                caculateDate() {
+                    var end = new Date('2016-12-31');
+                    console.log(this.date1 + ' - ' + end);
+                    var a = (end - this.date1) / (24 * 3600 * 1000 * 365);
+                    this.dayNum = a.toFixed(2);
+                    console.log(a);
+                },
+                onSubmit() {
+                    switch (this.t) {
+                        case 1:
+                            this.tt = 1;
+                            break;
+                        case 2:
+                            this.tt = 1.5;
+                            break;
+                        case 3:
+                            this.tt = 2;
+                            break;
+                        case 4:
+                            this.tt = 2.5;
+                            break;
+                        case 5:
+                            this.tt = 3.5;
+                            break;
+                    }
+                    this.caculateDate();
+                    // var d = 365, if(this.dateBox) {   d = this.dayNum; }
+                    var aa = this.num * this.tt * this.dayNum;
+                    this.visible = true;
+                    this.message = aa;
+                    this.$message.error('以官方结果为准！');
+                    console.log('submit!', this.message);
+                }
+            }
+        })
+    </script>
+    <style type="text/css">
+        #app {
+            width: 800px;
+            margin: 200px auto;
+        }
+        .image {
+            width: 400px;
+            display: block;
+            margin: 20px auto;
+        }
+
+    </style>
+</html>
