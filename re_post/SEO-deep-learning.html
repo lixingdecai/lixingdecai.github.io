@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>SEO-deep-learning | 李姓的菜の博客 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#ff5073">
+  
+  
+  <meta name="keywords" content="lixingdecai 李姓的菜">
+  <meta name="description" content="session1:
+spa做seo其实是分情况的，比如微博根本就不考虑seo，比如拥有，tb，天猫也不考虑，因为他们都是封闭的，自主体系的不考虑长尾的应用。那么比如像博客产品，简书啊，这一类的spa应用肯定就要考虑seo给自己引流了。一般分几种情况来解决。
+1，针对浏览器搜索引擎蜘蛛，对应生成一套专门给蜘蛛看的页面，nginx ua检测即可，转发到对应的蜘蛛引擎程序上。 2，使用前后端同构的方法进">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SEO-deep-learning">
+<meta property="og:url" content="http://www.lixingdecai.com/re_post/SEO-deep-learning.html">
+<meta property="og:site_name" content="李姓的菜の博客">
+<meta property="og:description" content="session1:
+spa做seo其实是分情况的，比如微博根本就不考虑seo，比如拥有，tb，天猫也不考虑，因为他们都是封闭的，自主体系的不考虑长尾的应用。那么比如像博客产品，简书啊，这一类的spa应用肯定就要考虑seo给自己引流了。一般分几种情况来解决。
+1，针对浏览器搜索引擎蜘蛛，对应生成一套专门给蜘蛛看的页面，nginx ua检测即可，转发到对应的蜘蛛引擎程序上。 2，使用前后端同构的方法进">
+<meta property="og:updated_time" content="2017-01-24T15:56:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SEO-deep-learning">
+<meta name="twitter:description" content="session1:
+spa做seo其实是分情况的，比如微博根本就不考虑seo，比如拥有，tb，天猫也不考虑，因为他们都是封闭的，自主体系的不考虑长尾的应用。那么比如像博客产品，简书啊，这一类的spa应用肯定就要考虑seo给自己引流了。一般分几种情况来解决。
+1，针对浏览器搜索引擎蜘蛛，对应生成一套专门给蜘蛛看的页面，nginx ua检测即可，转发到对应的蜘蛛引擎程序上。 2，使用前后端同构的方法进">
+  
+    <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
+  
+  <meta name="summary" content="李姓的菜的个人博客 lixingdecai personal blog">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">李姓的菜</h5>
+          <a href="mailto:310227663@qq.com" title="310227663@qq.com" class="mail">310227663@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lixingdecai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3188755773/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>李姓的菜の博客 &copy; 2016 - 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SEO-deep-learning</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container">
+        <h1 class="title">SEO-deep-learning</h1>
+        <h5 class="subtitle">
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>session1:</p>
+<p>spa做seo其实是分情况的，比如微博根本就不考虑seo，比如拥有，tb，天猫也不考虑，因为他们都是封闭的，自主体系的不考虑长尾的应用。那么比如像博客产品，简书啊，这一类的spa应用肯定就要考虑seo给自己引流了。一般分几种情况来解决。</p>
+<p>1，针对浏览器搜索引擎蜘蛛，对应生成一套专门给蜘蛛看的页面，nginx ua检测即可，转发到对应的蜘蛛引擎程序上。 2，使用前后端同构的方法进行页面渲染，比如react是支持php渲染的，完全可以做到蜘蛛来了就服务端输出，正常用户来了，则采用混合输出，比如首屏使用后端同构，后续功能使用前端渲染。 3，使用phantomjs对spa页面做抓取，再转发蜘蛛的ua请求提交回给蜘蛛。 4，后端对每个前端的controller同步做一个后端的实现，前端的controller使用history replaceState 弃用!#这种路由。当然之前这种方法用的少，主要是因为replaceState方法的兼容性问题，目前看来这种问题可以忽略了。因为很多网站不支持ie8了！</p>
+<p>session 2:</p>
+<p>在我们的sitemap配置了ETag之后，对日志一段时间的监测发现，其sitemap响应时间以及耗时的平均时间均大幅度下降，爬虫访问sitemap文件的次数有所增加，对于收录而言，通过图表也能看出相对的增长曲线，我们的整体收录率大致提升范围在2% – 5%左右。所以在此，强烈建议大家设置sitemap的ETag，简简单单的一个小动作就能看到相对明显的效果还是很不错的。</p>
+<hr>
+<p>目录</p>
+<h3 id="关于SEO"><a href="#关于SEO" class="headerlink" title="关于SEO"></a>关于SEO</h3><p>SEO: 搜索引擎优化（Search Engine Optimization）：指为了提升网页在搜索引擎自然搜索结果中的收录数量及排序位置而做的优化行为。</p>
+<p>对于网站和用户，搜索引擎优化是一种免费的引流渠道。对于搜索引擎，SEO是一种网站建设和优化需要遵循的规则。</p>
+<p>目的：为了从搜索引擎中获得更多的免费流量，以及更好地展现网站形象。</p>
+<p>我们美柚：的预想是 通过SEO优化达到引流到APP上。比如某个常识的贴士内容，出处是美柚、柚宝宝等去达到推广 和 引导用户去使用美柚的APP。</p>
+<h4 id="SEO是什么"><a href="#SEO是什么" class="headerlink" title="SEO是什么"></a>SEO是什么</h4><p>SEO 是职业 还是 技能？</p>
+<p>在不少公司中，都有专门的SEO部门–&gt;搜索引擎中拉免费的流量、提高搜索流量转化率的相关用户体验、运营的一职多能的角色。</p>
+<p>SEO 不是机械的发链接和堆关键词。</p>
+<p>不同层次不同理解</p>
+<ol>
+<li>SEO是技术 关键字，描述，各种链接等 觉得SEO各方面都是通过技术实现的</li>
+<li>SEO是策略 制定一系列SEO相关的策略计划，指导技术，编辑，数据分析及外链专员等人员进行专项工作。</li>
+<li>SEO是艺术 挑逗搜索引擎或更深入研究搜索引擎</li>
+</ol>
+<p>技术不能支撑起SEO的全部，但技术是SEO的重要组成部分。会技术的不一定是SEO大牛，但SEO大牛肯定技术也很牛。</p>
+<p>ps:前端做SEO有天然的优势，有兴趣去研究，美柚如果能给这个机会的话，会是一个很不错的发展方向。</p>
+<p>天下无难事，只要肯放弃</p>
+<h4 id="SEO的发展"><a href="#SEO的发展" class="headerlink" title="SEO的发展"></a>SEO的发展</h4><p>几个反向</p>
+<ol>
+<li>技术 以数据分析为核心的偏技术方向</li>
+<li>产品  </li>
+<li>运营</li>
+</ol>
+<p>推荐网站</p>
+<p><a href="http://club.shop123.net/" target="_blank" rel="external">光年社区</a></p>
+<p><a href="http://seofangfa.com/" target="_blank" rel="external">方法博客</a> 智联招聘高级SEO顾问，提供整站SEO顾问服务！[]</p>
+<h4 id="SEO能做什么"><a href="#SEO能做什么" class="headerlink" title="SEO能做什么"></a>SEO能做什么</h4><h3 id="SEO的原理-和策略"><a href="#SEO的原理-和策略" class="headerlink" title="SEO的原理 和策略"></a>SEO的原理 和策略</h3><p>搜索引擎主动抓取网页的步骤</p>
+<ol>
+<li>派出Spider ： 按照一定策略把网页抓回到搜索引擎服务器</li>
+<li>内容处理 ： 对抓取回来的网页进行链接抽离、内容处理，消除噪声、提取该页主题文本内容。</li>
+<li>中文分词 ： 对网页的内容进行中文分词、去除停止词。</li>
+<li>索引 ： 去重，对剩余网页进行倒序索引，等待用户的检索</li>
+</ol>
+<p>搜索引擎工作流程</p>
+<ol>
+<li>查询分析：查询关键词分词</li>
+<li>缓存机制：查询缓存中是否有该关键词的查询结果</li>
+<li>网页排序：没有缓存，索引库的网页进行调取排名</li>
+<li>反作弊: (最重要 也是作弊最多的部分) 内容相关性,重要性（链接权重分析），用户体验高低（搜索结果页的使用体验）。</li>
+</ol>
+<p>SEO基础入门：</p>
+<ol>
+<li>词库</li>
+<li>内容建设</li>
+<li>收录</li>
+<li>排名</li>
+<li>点击率</li>
+<li>友情链接</li>
+</ol>
+<p>Spider：爬虫 蜘蛛 机器人 。</p>
+<p>会碰到的几个问题</p>
+<ol>
+<li>找入口 获取网页抓取入口</li>
+<li>时效性</li>
+<li>暗网页面的抓取</li>
+<li>多个页面协作，避免重复抓取页面。</li>
+</ol>
+<h3 id="我们能做什么"><a href="#我们能做什么" class="headerlink" title="我们能做什么"></a>我们能做什么</h3><p>内链、外链、引流</p>
+<p><a href="https://index.baidu.com/?tpl=trend&amp;word=%C3%C0%E8%D6" target="_blank" rel="external">美柚的百度指数</a></p>
+<h4 id="网站结构优化"><a href="#网站结构优化" class="headerlink" title="网站结构优化"></a>网站结构优化</h4><h4 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h4><h3 id="外链建设"><a href="#外链建设" class="headerlink" title="外链建设"></a>外链建设</h3><p>外链的重要性</p>
+<ol>
+<li>SEO业内一直有“内容为王，外链为皇”；</li>
+<li>google和百度接二连三针对链接作弊进行了严厉打击</li>
+</ol>
+<p>获取外链的方法及点评</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>名词解释</p>
+<p>百度权重 BR：搜索引擎百度对于某个网页针对相应关键词所赋予的权值(重要性)，就是百度权重。</p>
+<h4 id="移动端SEO"><a href="#移动端SEO" class="headerlink" title="移动端SEO"></a>移动端SEO</h4><h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><p>.ee域名在优化方面，比如容易，因为.ee域名建垃圾的人比较少，而国外使用此域名后缀比较多，在百度site:可以查询到有很多国外站点，都是优势站点，所以在国内.ee建站容易优化，我们建了几个也进行了测试如“凌善” “焦作百修帮”还有朋友那个“域米网”你可以通过百度搜索一下这些关注排名，基本都在首页1-3名，同时发现很多国际巨头谷歌google.ee，亚马逊Amazon.ee,佳能canon.ee，联想lenovo.ee，也绑定或启用了</p>
+<h3 id="可拓展-可挖掘"><a href="#可拓展-可挖掘" class="headerlink" title="可拓展 可挖掘"></a>可拓展 可挖掘</h3><p>怎么在app中反向引导流量到SEO–&gt; 分享的小贴士页面。</p>
+<p>参考文章</p>
+<p><a href="http://www.365soudao.com/SEO/SEO_734.html" target="_blank" rel="external">http://www.365soudao.com/SEO/SEO_734.html</a> <a href="http://www.search1990.com/other/semsc.html" target="_blank" rel="external">http://www.search1990.com/other/semsc.html</a> 搜索引擎排名</p>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>李姓的菜</strong></p>
+                <p><em>个人博客</em></p>
+                <p>写了7年左右日记第一次写博客<br><br> 工作五年 一直在做着不同的事情java web、 android app 、ionic的webapp，前台后台数据库移动端都搞过，勉强算一名全栈吧。现在是一名正经的前端狗。<br><br> 喜欢爬山喜欢运动美食，喜欢有意思的事情<br><br><br><br><div style="width:100%;text-align:center;"><img src="/img/gif-2.gif"></div></p>
+            </div>
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="hexo-page-re_post-SEO-deep-learning.html" data-title="SEO-deep-learning" data-url="http://www.lixingdecai.com/re_post/SEO-deep-learning.html"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
+</script>
+
+
+
+
+    </article>
+    
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢爷赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "SEO-deep-learning",
+pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://www.lixingdecai.com/re_post/SEO-deep-learning.html" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260833527&web_id=1260833527"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87403984-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>
