@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>关于ECMAScript 5的严格模式 | 李姓的菜の博客 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#ff5073">
+  
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="最近看一些源码的时候经常看到’use strict’ 严格模式，对这个概念有点模棱两可。感觉 ES 5的严格模式和ES6有些地方有点相似，比如变量提升。这个可能注定要被历史掩埋，翻出来整理下纯粹为了好玩。
+“use strict” 是 ECMAScript 5引入的一条指令。指令不是语句（但非常接近于语句）
+先科普下指令和语句之间的两个重大的区别它不包含其他语言的关键字。指令仅仅是一个包含一个特殊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于ECMAScript 5的严格模式">
+<meta property="og:url" content="http://www.lixingdecai.com/17/04/about-use-strict/index.html">
+<meta property="og:site_name" content="李姓的菜の博客">
+<meta property="og:description" content="最近看一些源码的时候经常看到’use strict’ 严格模式，对这个概念有点模棱两可。感觉 ES 5的严格模式和ES6有些地方有点相似，比如变量提升。这个可能注定要被历史掩埋，翻出来整理下纯粹为了好玩。
+“use strict” 是 ECMAScript 5引入的一条指令。指令不是语句（但非常接近于语句）
+先科普下指令和语句之间的两个重大的区别它不包含其他语言的关键字。指令仅仅是一个包含一个特殊">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/WeChatSight1.png">
+<meta property="og:updated_time" content="2017-04-18T15:19:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于ECMAScript 5的严格模式">
+<meta name="twitter:description" content="最近看一些源码的时候经常看到’use strict’ 严格模式，对这个概念有点模棱两可。感觉 ES 5的严格模式和ES6有些地方有点相似，比如变量提升。这个可能注定要被历史掩埋，翻出来整理下纯粹为了好玩。
+“use strict” 是 ECMAScript 5引入的一条指令。指令不是语句（但非常接近于语句）
+先科普下指令和语句之间的两个重大的区别它不包含其他语言的关键字。指令仅仅是一个包含一个特殊">
+<meta name="twitter:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/WeChatSight1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
+  
+  <meta name="summary" content="李姓的菜的个人博客 lixingdecai personal blog">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">李姓的菜</h5>
+          <a href="mailto:310227663@qq.com" title="310227663@qq.com" class="mail">310227663@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lixingdecai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3188755773/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>李姓的菜の博客 &copy; 2016 - 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">关于ECMAScript 5的严格模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">关于ECMAScript 5的严格模式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-17T14:27:39.000Z" itemprop="datePublished" class="page-time">
+  2017-04-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#先科普下指令和语句之间的两个重大的区别"><span class="post-toc-number">1.</span> <span class="post-toc-text">先科普下指令和语句之间的两个重大的区别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#它不包含其他语言的关键字。"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">它不包含其他语言的关键字。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#它只能出现脚本代码的开始或者函数体的开始、任何实体语句之前。"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">它只能出现脚本代码的开始或者函数体的开始、任何实体语句之前。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#严格模式和非严格模式的区别"><span class="post-toc-number">2.</span> <span class="post-toc-text">严格模式和非严格模式的区别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#严格模式下，this指向的值是undefined-非严格模式下this-指向的是全局变量"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">严格模式下，this指向的值是undefined, 非严格模式下this 指向的是全局变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#严格模式禁止使用-with语句"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">严格模式禁止使用 with语句</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#严格模式中，所有变量都要先申明"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">严格模式中，所有变量都要先申明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#call-或-apply"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">call() 或 apply()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#只读和不可扩展对象"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">只读和不可扩展对象</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#eval"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">eval()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#arguments-对象"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">arguments 对象</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#delete"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">delete</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#同名错误"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">同名错误</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#八进制"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">八进制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#caller"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">caller</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目的"><span class="post-toc-number">3.</span> <span class="post-toc-text">目的</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#缺点"><span class="post-toc-number">4.</span> <span class="post-toc-text">缺点</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-about-use-strict" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">关于ECMAScript 5的严格模式</h1>
+        <div class="post-meta">
+            <time datetime="2017-04-17T14:27:39.000Z" itemprop="datePublished" class="post-time">
+  2017-04-17
+</time>
+
+            
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近看一些源码的时候经常看到’use strict’ 严格模式，对这个概念有点模棱两可。感觉 ES 5的严格模式和ES6有些地方有点相似，比如变量提升。这个可能注定要被历史掩埋，翻出来整理下纯粹为了好玩。</p>
+<p>“use strict” 是 ECMAScript 5引入的一条指令。指令不是语句（但非常接近于语句）</p>
+<h3 id="先科普下指令和语句之间的两个重大的区别"><a href="#先科普下指令和语句之间的两个重大的区别" class="headerlink" title="先科普下指令和语句之间的两个重大的区别"></a>先科普下指令和语句之间的两个重大的区别</h3><h4 id="它不包含其他语言的关键字。"><a href="#它不包含其他语言的关键字。" class="headerlink" title="它不包含其他语言的关键字。"></a>它不包含其他语言的关键字。</h4><p>指令仅仅是一个包含一个特殊字符串直接量的表达式。对于没有支持ECMAScript 5解释器的浏览器，“use strict” 只是个没有副作用的表达式语句。将来如果 user被作为关键字的时候，将不需要引号</p>
+<p>ps:大部分浏览器都支持ECMAScript 5的 javascript解释器, 但是 ie8对ECMAScript大部分功能支持，但不支持strict mode</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/WeChatSight1.png" alt=""></p>
+<h4 id="它只能出现脚本代码的开始或者函数体的开始、任何实体语句之前。"><a href="#它只能出现脚本代码的开始或者函数体的开始、任何实体语句之前。" class="headerlink" title="它只能出现脚本代码的开始或者函数体的开始、任何实体语句之前。"></a>它只能出现脚本代码的开始或者函数体的开始、任何实体语句之前。</h4><p>这里其实有点疑义，’use strict’可以不在第一行，只要前面不是产生实际运行结果的语句，比如直接跟在一个空的分好后面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">　　　　&quot;use strict&quot;;</div><div class="line">　　　　console.log(&quot;这是严格模式。&quot;);</div><div class="line">　　&lt;/script&gt;</div><div class="line"></div><div class="line">　　&lt;script&gt;</div><div class="line">　　　　console.log(&quot;这是正常模式。&quot;);kly, it&apos;s almost 2 years ago now. I can admit it now - I run it on my school&apos;s network that has about 50 computers.</div><div class="line">　　&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>上面代码中，前一个script标签是严格模式，后一个标签不是严格模式</p>
+<h3 id="严格模式和非严格模式的区别"><a href="#严格模式和非严格模式的区别" class="headerlink" title="严格模式和非严格模式的区别"></a>严格模式和非严格模式的区别</h3><h4 id="严格模式下，this指向的值是undefined-非严格模式下this-指向的是全局变量"><a href="#严格模式下，this指向的值是undefined-非严格模式下this-指向的是全局变量" class="headerlink" title="严格模式下，this指向的值是undefined, 非严格模式下this 指向的是全局变量"></a>严格模式下，this指向的值是undefined, 非严格模式下this 指向的是全局变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function ()&#123;</div><div class="line">    return !this;</div><div class="line">&#125;</div><div class="line"></div><div class="line">非严格模式下 this指向的全局变量，!this返回 false</div><div class="line"></div><div class="line">function() &#123;</div><div class="line">    &apos;use strict&apos;</div><div class="line">    return !this;</div><div class="line">&#125;</div><div class="line"></div><div class="line">严格模式下 this指向的是undefined, 所以!this的值是 true</div></pre></td></tr></table></figure>
+<p>可以利用这种特性来判断javascript实现是否支持严格模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var isStrictMode = (function() &#123;</div><div class="line">    &quot;use strict&quot;;</div><div class="line">    return this === undefinded</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<h4 id="严格模式禁止使用-with语句"><a href="#严格模式禁止使用-with语句" class="headerlink" title="严格模式禁止使用 with语句"></a>严格模式禁止使用 with语句</h4><p>with语句用于扩展临时作用域链</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">with(document.form[0])&#123;</div><div class="line">    name.value = &apos;&apos;;</div><div class="line">    address.value = &apos;&apos;;</div><div class="line">    email.value = &apos;&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">以上的 with语句等价于 -&gt;</div><div class="line"></div><div class="line">var form = document.form[0];</div><div class="line">form.name.value = &apos;&apos;;</div><div class="line">form.address.value = &apos;&apos;;</div><div class="line">form.email.value = &apos;&apos;;</div></pre></td></tr></table></figure>
+<p>但是必须一提的是，with 有两个致命缺点。一个是难于优化，一个是运行比较慢，所以在严格模式中是被禁止使用的。</p>
+<h4 id="严格模式中，所有变量都要先申明"><a href="#严格模式中，所有变量都要先申明" class="headerlink" title="严格模式中，所有变量都要先申明"></a>严格模式中，所有变量都要先申明</h4><p>如果给一个为申明的变量、函数、函数参数、catch从句参数或全局对象的属性赋值，将会抛出一个错误异常。这个跟ES 6中的没有变量提升一样，变量得先定义在使用。</p>
+<p>在非严格模式中，这种隐式申明的全局变量的方法是给全局对象新添加一个新属性</p>
+<h4 id="call-或-apply"><a href="#call-或-apply" class="headerlink" title="call() 或 apply()"></a>call() 或 apply()</h4><p>在严格模式中，通过 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="external">call()</a> 或 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="external">apply()</a> 来调用函数时，其中的this值就是传入的第一个参数</p>
+<p>在非严格模式中，null 和 undefined 值被全局对象和转换为对象的的非对象值所替代</p>
+<h4 id="只读和不可扩展对象"><a href="#只读和不可扩展对象" class="headerlink" title="只读和不可扩展对象"></a>只读和不可扩展对象</h4><p>严格模式下，给只读和不可扩展对象创建新成员都将抛出一个类型错误<br>非严格模式，这些操作只是简单的操作失败，不会报错</p>
+<h4 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h4><p>在严格模式中，传入eval()的代码不能再调用程序所在的上下文中声明变量或定义函数。变量和函数的定义是在eval()创建新的作用域，在eval()返回时，作用域就被弃用了。</p>
+<p>正常模式下，eval()的作用域取决于所处全局作用域，或者处于函数的局部作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;</div><div class="line"></div><div class="line">var a = 1;</div><div class="line"></div><div class="line">console.log(eval(&quot;var a = 5; a&quot;))   // 5</div><div class="line"></div><div class="line">console.log(a);                     // 1</div></pre></td></tr></table></figure>
+<h4 id="arguments-对象"><a href="#arguments-对象" class="headerlink" title="arguments 对象"></a>arguments 对象</h4><p>在严格模式，传入参数arguments拥有传入传入函数值的静态副本。<br>所以你不允许对arguments进行操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;</div><div class="line"></div><div class="line">function f() &#123;</div><div class="line">    arguments ++;    // 报错：SyntaxError: can&apos;t assign to arguments in strict mode</div><div class="line">&#125;</div><div class="line"></div><div class="line">try &#123; &#125; catch (arguments) &#123; &#125; // 语法错误</div><div class="line"></div><div class="line">function arguments() &#123; &#125; // 语法错误</div><div class="line"></div><div class="line">var f = new Function(&quot;arguments&quot;, &quot;&apos;use strict&apos;; return 17;&quot;); // 语法错误</div></pre></td></tr></table></figure>
+<p>在非严格模式，arguments的数组元素和函数参数都是指向同一个值的引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function f1(a) &#123;</div><div class="line">    a++;</div><div class="line">    return [a, arguments[0]];</div><div class="line">&#125;</div><div class="line">f1(1);              //非严格模式下输出为 [2,2];</div><div class="line"></div><div class="line">function f2(a) &#123;</div><div class="line">    &apos;use strict&apos;</div><div class="line">    a++;</div><div class="line">    return [a,arguments[0]]</div><div class="line">&#125;</div><div class="line">f2(1)               // 严格模式下输出位[2,1]</div></pre></td></tr></table></figure>
+<h4 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h4><p>严格模式下，就变得严格的，当 delete运算符后跟随非法的标识符。将抛出一个语法错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;</div><div class="line"></div><div class="line">delete a;           // SyntaxError: applying the &apos;delete&apos; operator to an unqualified name is deprecated</div><div class="line"></div><div class="line">非严格模式下</div><div class="line"></div><div class="line">delete a;          // false</div></pre></td></tr></table></figure>
+<h4 id="同名错误"><a href="#同名错误" class="headerlink" title="同名错误"></a>同名错误</h4><p>在严格模式中，在一个对象直接量中定义两个或多个同名属性将会报错。</p>
+<p>但在浏览器是了下同名并不会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">重名的属性</div><div class="line">&apos;use strict&apos;</div><div class="line">var a = &#123;</div><div class="line">    b: 1,</div><div class="line">    b: 2</div><div class="line">&#125;</div><div class="line"></div><div class="line">严格模式和非严格模式下同名属性都不会报错。</div></pre></td></tr></table></figure>
+<p>重名的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line"></div><div class="line">function f(a, a, b) &#123; // 语法错误</div><div class="line"></div><div class="line">    return ;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h4><p>严格模式是不允许使用八进制整数直接量，以0为前缀，而不是已0x为前缀。</p>
+<h4 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h4><p>匿名函数无法在内部调用自身</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line"></div><div class="line">var f = function() &#123; return arguments.callee; &#125;;</div><div class="line"></div><div class="line">f(); // 报错 TypeError: &apos;caller&apos;, &apos;callee&apos;, and &apos;arguments&apos; properties may not be accessed on strict mode functions or the arguments objects for calls to them</div></pre></td></tr></table></figure>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ol>
+<li>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ol>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有。这时这些本来是严格模式的文件，被 merge 后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节。</p>
+<p>更多内容可以参考阮老师的文章 <a href="http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html" target="_blank" rel="external">Javascript 严格模式详解</a></p>
+
+        </div>
+        
+        <blockquote class="post-copyright">
+    <div class="content">
+        声明引用：<a href="/17/04/about-use-strict/" target="_blank" rel="external">http://www.lixingdecai.com/17/04/about-use-strict/</a>
+    </div>
+    <footer>
+        <a href="http://www.lixingdecai.com">
+            <img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg" alt="李姓的菜">
+            李姓的菜
+        </a>
+    </footer>
+</blockquote>
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/21/03/xiaomi-newapp/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">小米新应用-美柚App 开发笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="about-use-strict" data-title="关于ECMAScript 5的严格模式" data-url="http://www.lixingdecai.com/17/04/about-use-strict/"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
+</script>
+
+
+
+
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢爷赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "关于ECMAScript 5的严格模式",
+pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://www.lixingdecai.com/17/04/about-use-strict/" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260833527&web_id=1260833527"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87403984-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

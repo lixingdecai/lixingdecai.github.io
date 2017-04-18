@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>关于对象的引用赋值 | 李姓的菜の博客 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#ff5073">
+  
+  
+  <meta name="keywords" content="lixingdecai 李姓的菜">
+  <meta name="description" content="原始类型：number、string、boolean、null、undefined
+对象类型：属性集合、函数、数组、日期、正则、error
+原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义一个由小写a.toSuperCase();            // 返回 HELLOs                           // s">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于对象的引用赋值">
+<meta property="og:url" content="http://www.lixingdecai.com/re_post/about-reference.html">
+<meta property="og:site_name" content="李姓的菜の博客">
+<meta property="og:description" content="原始类型：number、string、boolean、null、undefined
+对象类型：属性集合、函数、数组、日期、正则、error
+原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义一个由小写a.toSuperCase();            // 返回 HELLOs                           // s">
+<meta property="og:updated_time" content="2017-04-13T12:26:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于对象的引用赋值">
+<meta name="twitter:description" content="原始类型：number、string、boolean、null、undefined
+对象类型：属性集合、函数、数组、日期、正则、error
+原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义一个由小写a.toSuperCase();            // 返回 HELLOs                           // s">
+  
+    <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
+  
+  <meta name="summary" content="李姓的菜的个人博客 lixingdecai personal blog">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">李姓的菜</h5>
+          <a href="mailto:310227663@qq.com" title="310227663@qq.com" class="mail">310227663@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lixingdecai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3188755773/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>李姓的菜の博客 &copy; 2016 - 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">关于对象的引用赋值</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container">
+        <h1 class="title">关于对象的引用赋值</h1>
+        <h5 class="subtitle">
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>原始类型：number、string、boolean、null、undefined</p>
+<p>对象类型：属性集合、函数、数组、日期、正则、error</p>
+<p>原始值是不可变得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &apos;hello&apos;             // 定义一个由小写</div><div class="line">a.toSuperCase();            // 返回 HELLO</div><div class="line">s                           // s 还是 hello</div></pre></td></tr></table></figure></p>
+<p>通常将对象称为引用类型 (reference type), 对象的值都是引用，对象的比较都是引用的比较。</p>
+<p>可变的对象引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a =  [];        // ---堆---   ---栈----</div><div class="line">var b = a;          //    a   ----&gt;  []</div><div class="line">b[0] = 1;           //    b   指向a的引用</div><div class="line">a[0]                //</div><div class="line"></div><div class="line">a === b</div></pre></td></tr></table></figure>
+<p>变量的声明<br>var a;<br>var a = 0, b = 0;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var scope = &apos;global&apos;;</div><div class="line">function () &#123;</div><div class="line">    console.log(scope);</div><div class="line">    var scope = &apos;local&apos;;</div><div class="line">    console.log(scope);</div><div class="line">&#125;</div><div class="line">// 输出</div><div class="line">// undefined        变量提升，块级作用域变量覆盖全局作用域同名变量</div><div class="line">// local、、、</div></pre></td></tr></table></figure>
+<p>es5 和es 6中变量提升的区别：</p>
+<p>es5的var 中存在变量提升，可以在变量声明前使用;<br>es6的const、let两种命令不存在变量提升，不能再变量声明前使用变量；</p>
+<h2 id="传递"><a href="#传递" class="headerlink" title="传递"></a>传递</h2><h3 id="按值传递"><a href="#按值传递" class="headerlink" title="按值传递"></a>按值传递</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function a(str) &#123;</div><div class="line">  str = str + &quot;5678&quot;;</div><div class="line">  console.log(str);</div><div class="line">  return str;</div><div class="line">&#125;</div><div class="line">var s = &quot;1234&quot;;</div><div class="line">console.log(&apos;aaaa&apos;,a(s), s);</div><div class="line"></div><div class="line">// 打印的结果</div><div class="line">12345678</div><div class="line">aaaa 12345678 1234</div></pre></td></tr></table></figure>
+<p>如上代码中可以得到结果，如果是按值传递，不管方法a中的赋值结果如何，都不会改变方法外部的变量值。</p>
+<p>哪些是按值传递的呢？<br>原始类型（number、string、boolean、null、undefined）的这五种类型是按值传递的。原始类型在内存中是存在栈中，而对象类型是存储在堆内存中，理解对象的内存存储可以让你对传递的概念等有很好的帮助。</p>
+<h3 id="按引用传递"><a href="#按引用传递" class="headerlink" title="按引用传递"></a>按引用传递</h3><p>看看下面这个练习题的打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3, 4];</div><div class="line"></div><div class="line">function a (input) &#123;</div><div class="line">  return input.push([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">function b (input) &#123;</div><div class="line">  input = &apos;2234&apos;</div><div class="line">  return [input].concat([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(&apos;aaaa&apos;, a(arr), arr);</div><div class="line">console.log(&apos;------------&apos;);</div><div class="line">console.log(&apos;bbbb&apos;, b(arr), arr);</div><div class="line"></div><div class="line">// 打印结果</div><div class="line">// aaaa 5 [1, 2, 3, 4, [5, 6, 7, 8]]</div><div class="line">// ------------</div><div class="line">// bbbb [&quot;2234&quot;, 5, 6, 7, 8] [1, 2, 3, 4]</div></pre></td></tr></table></figure></p>
+<p>aaaa</p>
+<p>list是个Object, 它的值存在堆内存中，arr指向堆内存的地址，arr的值变了，arr也就跟着变了。这就是引用传递。</p>
+<p>其中的5是list.push返回的数组长度 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="external">Array.prototype.push()</a></p>
+<p>bbbb </p>
+<p>当函数内部对其重新赋值（即newValue !== oldValue），传入的外部变量不会受影响； <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="external">Array.prototype.push()</a></p>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>李姓的菜</strong></p>
+                <p><em>个人博客</em></p>
+                <p>写了7年左右日记第一次写博客<br><br> 工作五年 一直在做着不同的事情java web、 android app 、ionic的webapp，前台后台数据库移动端都搞过，勉强算一名全栈吧。现在是一名正经的前端狗。<br><br> 喜欢爬山喜欢运动美食，喜欢有意思的事情<br><br><br><br><div style="width:100%;text-align:center;"><img src="/img/gif-2.gif"></div></p>
+            </div>
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="hexo-page-re_post-about-reference.html" data-title="关于对象的引用赋值" data-url="http://www.lixingdecai.com/re_post/about-reference.html"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
+</script>
+
+
+
+
+    </article>
+    
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢爷赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "关于对象的引用赋值",
+pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://www.lixingdecai.com/re_post/about-reference.html" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260833527&web_id=1260833527"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87403984-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>
