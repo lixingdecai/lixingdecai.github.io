@@ -11,23 +11,26 @@
   <meta name="theme-color" content="#ff5073">
   
   
-  <meta name="keywords" content="lixingdecai 李姓的菜">
-  <meta name="description" content="原始类型：number、string、boolean、null、undefined
+  <meta name="keywords" content="">
+  <meta name="description" content="关于对象的引用赋值引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。
+原始类型：number、string、boolean、null、undefined
 对象类型：属性集合、函数、数组、日期、正则、error
-原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义一个由小写a.toSuperCase();            // 返回 HELLOs                           // s">
-<meta property="og:type" content="website">
+原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义">
+<meta property="og:type" content="article">
 <meta property="og:title" content="关于对象的引用赋值">
-<meta property="og:url" content="http://www.lixingdecai.com/re_post/about-reference.html">
+<meta property="og:url" content="http://www.lixingdecai.com/27/02/about-reference/index.html">
 <meta property="og:site_name" content="李姓的菜の博客">
-<meta property="og:description" content="原始类型：number、string、boolean、null、undefined
+<meta property="og:description" content="关于对象的引用赋值引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。
+原始类型：number、string、boolean、null、undefined
 对象类型：属性集合、函数、数组、日期、正则、error
-原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义一个由小写a.toSuperCase();            // 返回 HELLOs                           // s">
-<meta property="og:updated_time" content="2017-04-13T12:26:27.000Z">
+原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义">
+<meta property="og:updated_time" content="2017-04-19T12:48:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于对象的引用赋值">
-<meta name="twitter:description" content="原始类型：number、string、boolean、null、undefined
+<meta name="twitter:description" content="关于对象的引用赋值引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。
+原始类型：number、string、boolean、null、undefined
 对象类型：属性集合、函数、数组、日期、正则、error
-原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义一个由小写a.toSuperCase();            // 返回 HELLOs                           // s">
+原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义">
   
     <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
   
@@ -136,11 +139,17 @@
         
     </div>
 </header>
-<header class="content-header page-header">
+<header class="content-header post-header">
 
     <div class="container">
         <h1 class="title">关于对象的引用赋值</h1>
         <h5 class="subtitle">
+            
+                <time datetime="2017-02-27T13:22:05.000Z" itemprop="datePublished" class="page-time">
+  2017-02-27
+</time>
+
+
             
         </h5>
     </div>
@@ -151,14 +160,36 @@
 
 
 <div class="container body-wrap">
-    <article class="page-article" itemprop="blogPage">
-        <div class="post-content page-content" id="page-content" itemprop="pageContent">
-            <p>原始类型：number、string、boolean、null、undefined</p>
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于对象的引用赋值"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于对象的引用赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#传递"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">传递</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按值传递"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">按值传递</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按引用传递"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">按引用传递</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#克隆"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">克隆</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-about-reference" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">关于对象的引用赋值</h1>
+        <div class="post-meta">
+            <time datetime="2017-02-27T13:22:05.000Z" itemprop="datePublished" class="post-time">
+  2017-02-27
+</time>
+
+            
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="关于对象的引用赋值"><a href="#关于对象的引用赋值" class="headerlink" title="关于对象的引用赋值"></a>关于对象的引用赋值</h1><p>引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。</p>
+<p>原始类型：number、string、boolean、null、undefined</p>
 <p>对象类型：属性集合、函数、数组、日期、正则、error</p>
 <p>原始值是不可变得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &apos;hello&apos;             // 定义一个由小写</div><div class="line">a.toSuperCase();            // 返回 HELLO</div><div class="line">s                           // s 还是 hello</div></pre></td></tr></table></figure></p>
 <p>通常将对象称为引用类型 (reference type), 对象的值都是引用，对象的比较都是引用的比较。</p>
 <p>可变的对象引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a =  [];        // ---堆---   ---栈----</div><div class="line">var b = a;          //    a   ----&gt;  []</div><div class="line">b[0] = 1;           //    b   指向a的引用</div><div class="line">a[0]                //</div><div class="line"></div><div class="line">a === b</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a =  [];        // | —---堆----- |   | ----栈---- |</div><div class="line">var b = a;          // |  a          |--&gt;|  []       |</div><div class="line">b[0] = 1;           // |  b指向a的引用 |   |           |</div><div class="line">a[0]                // |            a|   |           |</div><div class="line"></div><div class="line">a === b</div></pre></td></tr></table></figure>
 <p>变量的声明<br>var a;<br>var a = 0, b = 0;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var scope = &apos;global&apos;;</div><div class="line">function () &#123;</div><div class="line">    console.log(scope);</div><div class="line">    var scope = &apos;local&apos;;</div><div class="line">    console.log(scope);</div><div class="line">&#125;</div><div class="line">// 输出</div><div class="line">// undefined        变量提升，块级作用域变量覆盖全局作用域同名变量</div><div class="line">// local、、、</div></pre></td></tr></table></figure>
 <p>es5 和es 6中变量提升的区别：</p>
@@ -166,23 +197,36 @@
 <h2 id="传递"><a href="#传递" class="headerlink" title="传递"></a>传递</h2><h3 id="按值传递"><a href="#按值传递" class="headerlink" title="按值传递"></a>按值传递</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function a(str) &#123;</div><div class="line">  str = str + &quot;5678&quot;;</div><div class="line">  console.log(str);</div><div class="line">  return str;</div><div class="line">&#125;</div><div class="line">var s = &quot;1234&quot;;</div><div class="line">console.log(&apos;aaaa&apos;,a(s), s);</div><div class="line"></div><div class="line">// 打印的结果</div><div class="line">12345678</div><div class="line">aaaa 12345678 1234</div></pre></td></tr></table></figure>
 <p>如上代码中可以得到结果，如果是按值传递，不管方法a中的赋值结果如何，都不会改变方法外部的变量值。</p>
 <p>哪些是按值传递的呢？<br>原始类型（number、string、boolean、null、undefined）的这五种类型是按值传递的。原始类型在内存中是存在栈中，而对象类型是存储在堆内存中，理解对象的内存存储可以让你对传递的概念等有很好的帮助。</p>
-<h3 id="按引用传递"><a href="#按引用传递" class="headerlink" title="按引用传递"></a>按引用传递</h3><p>看看下面这个练习题的打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3, 4];</div><div class="line"></div><div class="line">function a (input) &#123;</div><div class="line">  return input.push([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">function b (input) &#123;</div><div class="line">  input = &apos;2234&apos;</div><div class="line">  return [input].concat([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(&apos;aaaa&apos;, a(arr), arr);</div><div class="line">console.log(&apos;------------&apos;);</div><div class="line">console.log(&apos;bbbb&apos;, b(arr), arr);</div><div class="line"></div><div class="line">// 打印结果</div><div class="line">// aaaa 5 [1, 2, 3, 4, [5, 6, 7, 8]]</div><div class="line">// ------------</div><div class="line">// bbbb [&quot;2234&quot;, 5, 6, 7, 8] [1, 2, 3, 4]</div></pre></td></tr></table></figure></p>
+<h3 id="按引用传递"><a href="#按引用传递" class="headerlink" title="按引用传递"></a>按引用传递</h3><p>看看下面这个练习题的打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3, 4];</div><div class="line"></div><div class="line">function a (input) &#123;</div><div class="line">  return input.push([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">function b (input) &#123;</div><div class="line">  input = &apos;2234&apos;</div><div class="line">  return [input].concat([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(&apos;aaa&apos;, a(arr), arr);</div><div class="line">console.log(&apos;------------&apos;);</div><div class="line">console.log(&apos;bbbb&apos;, b(arr), arr);</div><div class="line"></div><div class="line">// 打印结果</div><div class="line">// aaaa 5 [1, 2, 3, 4, [5, 6, 7, 8]]</div><div class="line">// ------------</div><div class="line">// bbbb [&quot;2234&quot;, 5, 6, 7, 8] [1, 2, 3, 4]</div></pre></td></tr></table></figure></p>
 <p>aaaa</p>
 <p>list是个Object, 它的值存在堆内存中，arr指向堆内存的地址，arr的值变了，arr也就跟着变了。这就是引用传递。</p>
 <p>其中的5是list.push返回的数组长度 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="external">Array.prototype.push()</a></p>
 <p>bbbb </p>
 <p>当函数内部对其重新赋值（即newValue !== oldValue），传入的外部变量不会受影响； <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="external">Array.prototype.push()</a></p>
-
+<h2 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h2><p>针对对象的引用传递，改变的是引用的值，无法创建一个一样的对象。有两个解决方法，一种是自己写的克隆的方法 ，一种<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" target="_blank" rel="external">Object.assign()</a></p>
+<p>不过两种都有缺点，自己写clone比较麻烦，下面代码里的兼容性也不好，arguments.callee在ES 5的严格模式中是背禁用的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">深度拷贝方法1</div><div class="line">  function clone(obj)</div><div class="line">  &#123;</div><div class="line">    var o,i,j,k;</div><div class="line">    if(typeof(obj)!=&quot;object&quot; || obj===null)return obj;</div><div class="line">    if(obj instanceof(Array))</div><div class="line">    &#123;</div><div class="line">      o=[];</div><div class="line">      i=0;j=obj.length;</div><div class="line">      for(;i&lt;j;i++)</div><div class="line">      &#123;</div><div class="line">        if(typeof(obj[i])==&quot;object&quot; &amp;&amp; obj[i]!=null)</div><div class="line">        &#123;</div><div class="line">          o[i]=arguments.callee(obj[i]);</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          o[i]=obj[i];</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    else</div><div class="line">    &#123;</div><div class="line">      o=&#123;&#125;;</div><div class="line">      for(i in obj)</div><div class="line">      &#123;</div><div class="line">        if(typeof(obj[i])==&quot;object&quot; &amp;&amp; obj[i]!=null)</div><div class="line">        &#123;</div><div class="line">          o[i]=arguments.callee(obj[i]);</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          o[i]=obj[i];</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    return o;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  深度拷贝方法2</div><div class="line">  var deepCopy= function(source) &#123; </div><div class="line">    var result=&#123;&#125;;</div><div class="line">    for (var key in source) &#123;</div><div class="line">          result[key] = typeof source[key]===’object’? deepCoyp(source[key]): source[key];</div><div class="line">      &#125; </div><div class="line">    return result; </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
         </div>
-
         
-        <div class="card page-about-me flex-row">
-            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
-            <div class="content flex-col">
-                <p><strong>李姓的菜</strong></p>
-                <p><em>个人博客</em></p>
-                <p>写了7年左右日记第一次写博客<br><br> 工作五年 一直在做着不同的事情java web、 android app 、ionic的webapp，前台后台数据库移动端都搞过，勉强算一名全栈吧。现在是一名正经的前端狗。<br><br> 喜欢爬山喜欢运动美食，喜欢有意思的事情<br><br><br><br><div style="width:100%;text-align:center;"><img src="/img/gif-2.gif"></div></p>
-            </div>
+        <blockquote class="post-copyright">
+    <div class="content">
+        声明引用：<a href="/27/02/about-reference/" target="_blank" rel="external">http://www.lixingdecai.com/27/02/about-reference/</a>
+    </div>
+    <footer>
+        <a href="http://www.lixingdecai.com">
+            <img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg" alt="李姓的菜">
+            李姓的菜
+        </a>
+    </footer>
+</blockquote>
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
 
             
 <div class="post-share-wrap">
@@ -229,17 +273,34 @@
 
 
         </div>
-        
+    </div>   
 
-        
-<div class="post-reward">
-    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/27/02/SEO_DEEP_LEARNING/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SEO学习分享和培训文档 (附思维导图源文件)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/20/12/year-end-summary-for-2016/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">2016年年终总结</h4>
+      </a>
+    </div>
+  
+</nav>
 
 
-        
+            
+    
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="hexo-page-re_post-about-reference.html" data-title="关于对象的引用赋值" data-url="http://www.lixingdecai.com/re_post/about-reference.html"></div>
+	<div class="ds-thread" data-thread-key="about-reference" data-title="关于对象的引用赋值" data-url="http://www.lixingdecai.com/27/02/about-reference/"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.10"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -250,8 +311,8 @@ var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
 
 
 
-    </article>
-    
+</article>
+
 <div id="reward" class="reward-lay">
     <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
@@ -276,8 +337,8 @@ var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
     </ul>
 </div>
 
-</div>
 
+</div>
   </main>
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
@@ -287,7 +348,7 @@ BLOG.SHARE = {
 title: "关于对象的引用赋值",
 pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
 summary: document.getElementsByName('summary')[0].content,
-url: "http://www.lixingdecai.com/re_post/about-reference.html" }
+url: "http://www.lixingdecai.com/27/02/about-reference/" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
