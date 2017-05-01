@@ -5,32 +5,26 @@
   
   
   
-  <title>关于对象的引用赋值 | 李姓的菜の博客 | 个人博客</title>
+  <title>关于对象的声明 定义 引用 赋值 传递 | 李姓的菜の博客 | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#ff5073">
   
   
-  <meta name="keywords" content="">
-  <meta name="description" content="关于对象的引用赋值引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。
-原始类型：number、string、boolean、null、undefined
-对象类型：属性集合、函数、数组、日期、正则、error
-原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义">
+  <meta name="keywords" content="javaScript,对象">
+  <meta name="description" content="声明、定义、引用、赋值这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。
+申明申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于对象的引用赋值">
+<meta property="og:title" content="关于对象的声明 定义 引用 赋值 传递">
 <meta property="og:url" content="http://www.lixingdecai.com/27/02/about-reference/index.html">
 <meta property="og:site_name" content="李姓的菜の博客">
-<meta property="og:description" content="关于对象的引用赋值引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。
-原始类型：number、string、boolean、null、undefined
-对象类型：属性集合、函数、数组、日期、正则、error
-原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义">
-<meta property="og:updated_time" content="2017-04-19T12:48:03.000Z">
+<meta property="og:description" content="声明、定义、引用、赋值这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。
+申明申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const">
+<meta property="og:updated_time" content="2017-05-01T15:21:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于对象的引用赋值">
-<meta name="twitter:description" content="关于对象的引用赋值引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。
-原始类型：number、string、boolean、null、undefined
-对象类型：属性集合、函数、数组、日期、正则、error
-原始值是不可变得123var a = &amp;apos;hello&amp;apos;             // 定义">
+<meta name="twitter:title" content="关于对象的声明 定义 引用 赋值 传递">
+<meta name="twitter:description" content="声明、定义、引用、赋值这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。
+申明申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const">
   
     <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
   
@@ -120,7 +114,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">关于对象的引用赋值</div>
+        <div class="flex-col header-title ellipsis">关于对象的声明 定义 引用 赋值 传递</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -142,7 +136,7 @@
 <header class="content-header post-header">
 
     <div class="container">
-        <h1 class="title">关于对象的引用赋值</h1>
+        <h1 class="title">关于对象的声明 定义 引用 赋值 传递</h1>
         <h5 class="subtitle">
             
                 <time datetime="2017-02-27T13:22:05.000Z" itemprop="datePublished" class="page-time">
@@ -164,7 +158,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于对象的引用赋值"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于对象的引用赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#传递"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">传递</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按值传递"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">按值传递</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按引用传递"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">按引用传递</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#克隆"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">克隆</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#声明、定义、引用、赋值"><span class="post-toc-number">1.</span> <span class="post-toc-text">声明、定义、引用、赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#申明"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">申明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于对象的引用赋值"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">关于对象的引用赋值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#传递"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">传递</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按值传递"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">按值传递</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按引用传递"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">按引用传递</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#克隆"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">克隆</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -172,7 +166,7 @@
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">关于对象的引用赋值</h1>
+        <h1 class="post-card-title">关于对象的声明 定义 引用 赋值 传递</h1>
         <div class="post-meta">
             <time datetime="2017-02-27T13:22:05.000Z" itemprop="datePublished" class="post-time">
   2017-02-27
@@ -183,7 +177,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="关于对象的引用赋值"><a href="#关于对象的引用赋值" class="headerlink" title="关于对象的引用赋值"></a>关于对象的引用赋值</h1><p>引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。</p>
+            <h1 id="声明、定义、引用、赋值"><a href="#声明、定义、引用、赋值" class="headerlink" title="声明、定义、引用、赋值"></a>声明、定义、引用、赋值</h1><p>这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。</p>
+<h2 id="申明"><a href="#申明" class="headerlink" title="申明"></a>申明</h2><p>申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。<br>var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const 是用来申明常量的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let 和 var 的区别</div><div class="line">------ let --------</div><div class="line">var a = [];</div><div class="line">for (var i = 0; i &lt; 10; i++)&#123;</div><div class="line">  a[i] = function () &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">a[6]();           // 10</div><div class="line"></div><div class="line">------ var -------</div><div class="line">var a = [];</div><div class="line">for (let i = 0; i &lt; 10; i++) &#123;</div><div class="line">  a[i] = function() &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a[6]();           // 6</div></pre></td></tr></table></figure>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>函数的定义和函数的声明</p>
+<p>函数的定义表达式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var square = function (x) &#123; return x * x; &#125;</div></pre></td></tr></table></figure></p>
+<p>函数申明语句的语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function functionName ([args1,[args2,[..., argsn]]]) &#123;</div><div class="line">  statements;</div><div class="line">&#125;</div><div class="line"></div><div class="line">例子：</div><div class="line">function factorial(n) &#123;</div><div class="line">  if (n &lt;= 1) return n;</div><div class="line">  return n * factorial(n-1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="关于对象的引用赋值"><a href="#关于对象的引用赋值" class="headerlink" title="关于对象的引用赋值"></a>关于对象的引用赋值</h2><p>引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。</p>
 <p>原始类型：number、string、boolean、null、undefined</p>
 <p>对象类型：属性集合、函数、数组、日期、正则、error</p>
 <p>原始值是不可变得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &apos;hello&apos;             // 定义一个由小写</div><div class="line">a.toSuperCase();            // 返回 HELLO</div><div class="line">s                           // s 还是 hello</div></pre></td></tr></table></figure></p>
@@ -227,6 +227,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript/">javaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li></ul>
+
 
             
 <div class="post-share-wrap">
@@ -300,7 +302,7 @@
             
     
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="about-reference" data-title="关于对象的引用赋值" data-url="http://www.lixingdecai.com/27/02/about-reference/"></div>
+	<div class="ds-thread" data-thread-key="about-reference" data-title="关于对象的声明 定义 引用 赋值 传递" data-url="http://www.lixingdecai.com/27/02/about-reference/"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.10"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -345,7 +347,7 @@ var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
 
 <script>var BLOG = { ROOT: '/' };
 BLOG.SHARE = {
-title: "关于对象的引用赋值",
+title: "关于对象的声明 定义 引用 赋值 传递",
 pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
 summary: document.getElementsByName('summary')[0].content,
 url: "http://www.lixingdecai.com/27/02/about-reference/" }
