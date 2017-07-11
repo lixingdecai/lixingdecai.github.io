@@ -5,38 +5,27 @@
   
   
   
-  <title>李姓的菜の博客 | 个人博客</title>
+  <title>react-native源码解析 | 李姓的菜の博客 | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#ff5073">
   
   
-  <meta name="keywords" content="lixingdecai 李姓的菜">
-  <meta name="description" content="title: 混合应用RN的搭建和开发
-date: 2017-01-02 22:27:39
-tags:
-
-开发不同端，开发观念不同。
-例子:123456789101112131415161718问题描述：    在android下，提供的RN页面，在android提供的模拟器，页面文字显示不出来。问题原因：    在android下，每个Text标签都得写颜色。android开发人员认">
+  <meta name="keywords" content="javaScript">
+  <meta name="description" content="RCT是ReaCT的缩写，React Native中Object-C相关的命名均以RCT开头。
+组件bundle打包##">
+<meta name="keywords">
 <meta property="og:type" content="website">
-<meta property="og:title" content="李姓的菜の博客">
-<meta property="og:url" content="http://www.lixingdecai.com/re_post/communication-process-in-RN.html">
+<meta property="og:title" content="react-native源码解析">
+<meta property="og:url" content="http://www.lixingdecai.com/re_post/react-native-code.html">
 <meta property="og:site_name" content="李姓的菜の博客">
-<meta property="og:description" content="title: 混合应用RN的搭建和开发
-date: 2017-01-02 22:27:39
-tags:
-
-开发不同端，开发观念不同。
-例子:123456789101112131415161718问题描述：    在android下，提供的RN页面，在android提供的模拟器，页面文字显示不出来。问题原因：    在android下，每个Text标签都得写颜色。android开发人员认">
-<meta property="og:updated_time" content="2017-05-09T10:22:44.000Z">
+<meta property="og:description" content="RCT是ReaCT的缩写，React Native中Object-C相关的命名均以RCT开头。
+组件bundle打包##">
+<meta property="og:updated_time" content="2017-07-10T07:37:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李姓的菜の博客">
-<meta name="twitter:description" content="title: 混合应用RN的搭建和开发
-date: 2017-01-02 22:27:39
-tags:
-
-开发不同端，开发观念不同。
-例子:123456789101112131415161718问题描述：    在android下，提供的RN页面，在android提供的模拟器，页面文字显示不出来。问题原因：    在android下，每个Text标签都得写颜色。android开发人员认">
+<meta name="twitter:title" content="react-native源码解析">
+<meta name="twitter:description" content="RCT是ReaCT的缩写，React Native中Object-C相关的命名均以RCT开头。
+组件bundle打包##">
   
     <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
   
@@ -126,7 +115,7 @@ tags:
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis"></div>
+        <div class="flex-col header-title ellipsis">react-native源码解析</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -148,7 +137,7 @@ tags:
 <header class="content-header page-header">
 
     <div class="container">
-        <h1 class="title"></h1>
+        <h1 class="title">react-native源码解析</h1>
         <h5 class="subtitle">
             
         </h5>
@@ -162,15 +151,8 @@ tags:
 <div class="container body-wrap">
     <article class="page-article" itemprop="blogPage">
         <div class="post-content page-content" id="page-content" itemprop="pageContent">
-            <hr>
-<p>title: 混合应用RN的搭建和开发</p>
-<p>date: 2017-01-02 22:27:39</p>
-<p>tags:</p>
-<hr>
-<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p><br>不同端，开发观念不同。</p>
-<p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">问题描述：</div><div class="line">    在android下，提供的RN页面，在android提供的模拟器，页面文字显示不出来。</div><div class="line"></div><div class="line">问题原因：</div><div class="line">    在android下，每个Text标签都得写颜色。android开发人员认为，不设置Text是个很不可思议的事情，觉得是前端人员，也就是我个人能力的问题。</div><div class="line"></div><div class="line">    在前端开发里面，浏览器对文本会有默认颜色的显示。也就是我们对页面文本没有设置颜色时，会默认显示黑色。而且在前端可以在全局根目录设置颜色，css可以继承。而在RN里面样式个对象属性的方式，没办法去继承。</div><div class="line"></div><div class="line">如果不设置默认颜色，在哪个文本下忘记设置颜色的时候，就会出现无法显示的危险。</div><div class="line"></div><div class="line">问题讨论：</div><div class="line">    在 android和 ios下，没办法设置Text标签的默认颜色。得修改RN的源码。很麻烦。</div><div class="line">    在RN前端代码里面，颜色没办法继承。如果要写默认颜色，就得重写 Text标签，但重写 Text标签也无法解决规避问题，因为Text是基础组件，后来的开发人员不定会去用你重写的Text组件，而且每次也要单独去特别引用这个组件。</div><div class="line"></div><div class="line">附件问题</div><div class="line">    同一台手机，或者同一台模拟器，在android开发同学的demo</div><div class="line">上不设置文本不设置颜色是无法显示，RN提供的android demo 上是可以显示的。所以android开发同学提供的demo是有问题的。</div><div class="line">    android 同学一直觉得这个前端同学的锅，而我在一番讨论后，知道不同开发模式，不同的开发习惯理念的原因。而android开发人员还是揪着不放，说是前端的问题。这个争执让人翻白眼。</div></pre></td></tr></table></figure></p>
-<p>service封装<br>    调用native提供的网络请求方法</p>
-<p>交互协议封装<br>    nativeParam<br>    nativeProps</p>
+            <p>RCT是ReaCT的缩写，React Native中Object-C相关的命名均以RCT开头。</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><h2 id="bundle打包"><a href="#bundle打包" class="headerlink" title="bundle打包"></a>bundle打包</h2><p>## </p>
 
         </div>
 
@@ -238,7 +220,7 @@ tags:
 
         
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="hexo-page-re_post-communication-process-in-RN.html" data-title="" data-url="http://www.lixingdecai.com/re_post/communication-process-in-RN.html"></div>
+	<div class="ds-thread" data-thread-key="hexo-page-re_post-react-native-code.html" data-title="react-native源码解析" data-url="http://www.lixingdecai.com/re_post/react-native-code.html"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.10"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -283,10 +265,10 @@ var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
 
 <script>var BLOG = { ROOT: '/' };
 BLOG.SHARE = {
-title: "李姓的菜の博客",
+title: "react-native源码解析",
 pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
 summary: document.getElementsByName('summary')[0].content,
-url: "http://www.lixingdecai.com/re_post/communication-process-in-RN.html" }
+url: "http://www.lixingdecai.com/re_post/react-native-code.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>

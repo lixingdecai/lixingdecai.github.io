@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <title>美柚RN前端框架演进 | 李姓的菜の博客 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#ff5073">
+  
+  
+  <meta name="keywords" content="javaScript">
+  <meta name="description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
+台前幕后痛点：在做这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美柚RN前端框架演进">
+<meta property="og:url" content="http://www.lixingdecai.com/27/04/share_react_native/index.html">
+<meta property="og:site_name" content="李姓的菜の博客">
+<meta property="og:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
+台前幕后痛点：在做这个">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-position.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ionic-weex-ns.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-1.JPG">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-2.JPG">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-ios-1.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-use.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-first-month.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-team.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data1.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data2.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-static.MP4">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-dynamic.MP4">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-performs.MP4">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-native-parseflow.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-rendering-principle.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-fetch.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-page-no-found.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-pack.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/MeiyouReactDemo-android.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RNManager-ios.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/MeiyouReactDemo-android-debug.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RNManager-ios-debug.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-web-debug.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-bundle-load.jpg">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-data-storage.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-webp.png">
+<meta property="og:updated_time" content="2017-07-11T03:13:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="美柚RN前端框架演进">
+<meta name="twitter:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
+台前幕后痛点：在做这个">
+<meta name="twitter:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-position.png">
+  
+    <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
+  
+  <meta name="summary" content="李姓的菜的个人博客 lixingdecai personal blog">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.10">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">李姓的菜</h5>
+          <a href="mailto:310227663@qq.com" title="310227663@qq.com" class="mail">310227663@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lixingdecai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3188755773/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>李姓的菜の博客 &copy; 2016 - 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">美柚RN前端框架演进</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">美柚RN前端框架演进</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-27T13:22:05.000Z" itemprop="datePublished" class="page-time">
+  2017-04-27
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#台前幕后"><span class="post-toc-number">1.</span> <span class="post-toc-text">台前幕后</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#痛点："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">痛点：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定位"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">定位</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#横向对比"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">横向对比</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#落地狂奔"><span class="post-toc-number">2.</span> <span class="post-toc-text">落地狂奔</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#快速迭代"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">快速迭代</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#人员配置"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">人员配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#成果展示"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">成果展示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Android的数据统计"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">Android的数据统计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IOS效果对比"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">IOS效果对比</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#流程图"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">流程图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#渲染原理"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">渲染原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交互"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">交互</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通信协议-网络请求"><span class="post-toc-number">2.5.2.</span> <span class="post-toc-text">通信协议/网络请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络请求"><span class="post-toc-number">2.5.3.</span> <span class="post-toc-text">网络请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#异常处理"><span class="post-toc-number">2.5.4.</span> <span class="post-toc-text">异常处理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#白屏处理"><span class="post-toc-number">2.5.5.</span> <span class="post-toc-text">白屏处理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工程化"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">工程化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开发"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">开发</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#android"><span class="post-toc-number">2.7.1.</span> <span class="post-toc-text">android</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IOS"><span class="post-toc-number">2.7.2.</span> <span class="post-toc-text">IOS</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码调试"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">代码调试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#优化"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#拆包"><span class="post-toc-number">2.9.1.</span> <span class="post-toc-text">拆包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据缓存"><span class="post-toc-number">2.9.2.</span> <span class="post-toc-text">数据缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#图片优化"><span class="post-toc-number">2.9.3.</span> <span class="post-toc-text">图片优化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#待优化"><span class="post-toc-number">2.9.4.</span> <span class="post-toc-text">待优化</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-share_react_native" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">美柚RN前端框架演进</h1>
+        <div class="post-meta">
+            <time datetime="2017-04-27T13:22:05.000Z" itemprop="datePublished" class="post-time">
+  2017-04-27
+</time>
+
+            
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。</p>
+<h1 id="台前幕后"><a href="#台前幕后" class="headerlink" title="台前幕后"></a>台前幕后</h1><h2 id="痛点："><a href="#痛点：" class="headerlink" title="痛点："></a>痛点：</h2><p>在做这个事情前，我们先要明确我们要做这个事情的原因和目的，我们为什么要这么做。</p>
+<ol>
+<li>开发维护成本太高：要开发维护两套代码，而且原生在开发用户界面上的成本非常高，我之前写android页面你写个样式的编写维护好几个xml文件，不同的列表数据还得写不同类型的适配器。开发维护成本比web的页面开发高很多。</li>
+<li>繁复的版本管理：新老版本都要做兼容，就会出现一系列的版本。</li>
+<li>频繁的变更需求：在ios下，新版本发布需要通过app store的提交审核，会有个时间的延迟。不具备热更新的功能。</li>
+<li>性能体验的保证：在H5下的性能和体验得不到保证。</li>
+<li>App size越来越大：目前美柚App已经快97MB，柚宝宝已经107MB。</li>
+</ol>
+<h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><p>要清楚RN的定位，RN是一种解决方法，他是为了解决以上那些痛点而存在的。也就是在对比Native 和 H5, 要清楚RN 的优势在哪里。我们也要清楚认识到，在移动端App上，native 和 H5都是有其存在的价值的，RN可以替代他们，但是目前是不可能完全取代的。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-position.png" alt=""></p>
+<h2 id="横向对比"><a href="#横向对比" class="headerlink" title="横向对比"></a>横向对比</h2><p>知道为什么做、知道哪些痛点和要做这件事件的目的。现在就要知道怎么去做，用什么方式和方法。在市面上，流行的框架有 ionic nativescript  weex  reactnative四种比较主流的框架。这四个框架都是可以解决上面提到的那些痛点。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ionic-weex-ns.png" alt=""></p>
+<p>对于这些技术，我们提前做了下调研。</p>
+<p>Ionic</p>
+<blockquote>
+<p>Ionic is the beautiful, free and open source mobile SDK for developing native and progressive web apps with ease.</p>
+</blockquote>
+<p>就算你不懂任何移动端技术，也是可以hold的住的框架。在之前，我有落地过一个INOIC 1的项目，开发体验非常好，上手速度也非常快。INONIC1是基于ng1, IONIC2 是基于ng2。纯前端的开发模式，对前端开发人员的门槛很低，学习成本也很低。他是基于webview进行开发的APP，使用cordova API调用原生的功能。而且极光JPush之类的第三方插件都对IONIC支持，生态链也非常成熟。</p>
+<p>但是唯一的缺陷，也是致命的缺陷就是性能和体验的问题。目前出的IONIC2听说性能有很大改进，但是肯定没办法跟原生的相比。IONIC比较适合于一下小型的APP，和能力有限并且要快速迭代的初创公司。</p>
+<p>ionic ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">优势：</div><div class="line">    ios 和 android 基本上可以共用代码，纯web思维，开发速度快，简单方便，一次编码，到处运行，如果熟悉web开发，则开发难度较低。</div><div class="line">    文档很全，系统级支持封装较好，所有UI组件都是有html模拟，可以统一使用。</div><div class="line">    可实现在线更新 允许加载动态加载web js</div><div class="line">    前端的程序员就可以独立开发</div><div class="line">    文档多，开发者多，视频教程多 容易学习    遇到问题容易解决  技术成熟</div><div class="line">劣势：</div><div class="line">   占用内存高一些（不过手机内存都大了不影响），不适合做游戏类型app，   web技术无法解决一切问题，对于比较耗性能的地方无法利用native的思维实现优势互补，如高体验的交互，动画等。</div></pre></td></tr></table></figure></p>
+<p>Nativescript</p>
+<blockquote>
+<p>cross-platform mobile applications</p>
+</blockquote>
+<p>出现的很早，比RN还出现的更早一点。和RN与weex一样，都是最终转为native的解决方案，出自于一个保加利亞的軟件公司公司Telerik，比RN还出现的略早点，版本已经到了3.1。也是native、也是有各种组件、支持各种css style、也可以chrome调试开发，也支持集成进native的混合开发。很无解它的短板在什么地方，为什么用的人不多，网络上的相关资料也很少。看到的为数不多的文章写有偏向于整体的解决方案，网上更多的评论是NS更注重于用户体验功能之类的，而对于UI渲染这块是比较弱，不置可否。<br>大部分来自ionic的开发者，因为可以不用去关注native的相关技术。原生的开发应用性能得到保障。但是相关文档比较少，大部分都得通过官网学习，NS的中文网站都还没翻译全。关于NS的文章也是很少，基本都得看外文文献<a href="http://blog.backand.com/angular-2-nativescript-vs-react-native/" target="_blank" rel="external">NS vs RN</a></p>
+<p>其实我对NS没有过多实践，所有知道都是从官网或者其他的人写的文章这样的第二手资料，没什么资格去说这个事情，上面的评论大家看看就好。</p>
+<p>传送门<a href="https://github.com/NativeScript/NativeScript" target="_blank" rel="external">NativeScript 10K</a> <a href="http://docs.nativescript.org/" target="_blank" rel="external">文档</a></p>
+<p>WEEX:</p>
+<blockquote>
+<p>Write once, Run anywhere!</p>
+</blockquote>
+<p><a href="https://github.com/alibaba/weex" target="_blank" rel="external">weex 14k</a></p>
+<p><a href="https://weex.apache.org/cn/guide/intro/how-it-works.html" target="_blank" rel="external">原理</a>：Weex 表面上是一个客户端技术，但实际上它串联起了从本地开发环境到云端部署和分发的整个链路。开发者首先可以在本地像撰写 web 页面一样撰写一个 app 的页面，然后编译成一段 JavaScript 代码，形成 Weex 的一个 JS bundle；在云端，开发者可以把生成的 JS bundle 部署上去，然后通过网络请求或预下发的方式传递到用户的移动应用客户端；在移动应用客户端里，WeexSDK 会准备好一个 JavaScript 引擎，并且在用户打开一个 Weex 页面时执行相应的 JS bundle，并在执行过程中产生各种命令发送到 native 端进行的界面渲染或数据存储、网络通信、调用设备功能、用户交互响应等移动应用的场景实践；同时，如果用户没有安装移动应用，他仍然可以在浏览器里打开一个相同的 web 页面，这个页面是使用相同的页面源代码，通过浏览器里的 JavaScript 引擎运行起来的。</p>
+<p>其实最开始选型的第一选是weex，选择他原因有三吧</p>
+<ol>
+<li>基于vue，我们刚做完一个vue的项目，开发体验很不错</li>
+<li>可以三端统一，不只是 IOS和 Android，还有 H5也是可以，由于它的代码是基于VUE的，在IOS和android只是集成了sdk进行转换。</li>
+<li>对国产的支持吧</li>
+</ol>
+<p>从选用开发，到弃用，归结起来的原因有以下几点吧：</p>
+<ol>
+<li>生态链欠成熟；pull request 没有响应，论坛的提问也是过两天自己回答。</li>
+<li>文档不全；刚好也碰到weex官方支持vue，在官方文档也在升级支持vue，然后我们刚好是使用的最新支持vue开发的版本。官放说明文档很不全，得新老切换这看。</li>
+<li>团队对阿里开源的畏惧；好像都吃过阿里开源项目的亏，阿里KPI项目的尿性也是众人皆知了。又值阿里将weex贡献给apache时间节点，心里怕怕的。</li>
+<li>能力不够；其实最关键还是我们能力的问题，我们没有那么多时间、精力、人力耗在这个上面。公司也不会允许我们无休止的研究开发，我们也是有KPI压力的。</li>
+<li>页面效果不理想；我们拿贴士的页面入手，但是出来的效果，在IOS上显示差异很大。</li>
+</ol>
+<p>将美柚的今日贴士的页面，android下还是比较好的，但在ios下就完全乱了。官网文档和版本对应不上，很多问题网上都没有解答，社区响应速度很慢，有两个问题，我自己在社区上提问，然后过一两天解决了自己再去回答。当我们最后看到weex在ios上的展示的效果后，没有去找原因，几个大佬还有我们两个开发人员考虑一致决定弃坑。因为人力维护不起，因为不是write once, run anywhere。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-1.JPG" alt=""></p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-2.JPG" alt=""></p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-ios-1.png" alt=""></p>
+<p>react native</p>
+<p>优点 目的</p>
+<ol>
+<li>基于 React 前端的技术栈，组件化开发思想</li>
+<li>相对于 native，开发速度快，成本低</li>
+<li>相对于 H5，性能更优异，体验更好</li>
+<li>生态比较成熟，社区活跃，市场成熟，开源组件丰富充足</li>
+</ol>
+<p>RN在市场中的使用情况<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-use.png" alt="">（图片中数据来源于携程2016.10统计的android市场的数据）</p>
+<blockquote>
+<p>Learn once，Write anywhere!</p>
+</blockquote>
+<p><a href="https://github.com/facebook/react-native" target="_blank" rel="external">RN 50K</a><br>做不到 Write once, Run anywhere! 对于一些特定的组件，还是要写两套代码。</p>
+<h1 id="落地狂奔"><a href="#落地狂奔" class="headerlink" title="落地狂奔"></a>落地狂奔</h1><h2 id="快速迭代"><a href="#快速迭代" class="headerlink" title="快速迭代"></a>快速迭代</h2><p>因为从weex半路转到RN，所以基本是从零开始。对很多东西都疑惑:</p>
+<ol>
+<li>怎么将RN集成进美柚App</li>
+<li>RN 和native 怎么进行交互传值</li>
+<li>页面跳转；native 怎么跳 RN页面，RN页面怎么跳RN 页面。</li>
+<li>如何开发编译完的bundl文件给Native。</li>
+</ol>
+<p>ReactNative是基于react，而我只是对react有理论知识上的了解，还没有落地过任何项目。但是经过一个月的小步快跑。完成了八个页面的改造，18个组件的抽象，还有和native协定了交互的规范。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-first-month.png" alt=""></p>
+<h2 id="人员配置"><a href="#人员配置" class="headerlink" title="人员配置"></a>人员配置</h2><p>不管是RN 或者weex 都不是真的像他们的宣传语一样，学一次或者写一次就能在任何地方使用，也不可能只由一个程序员完成。你得会客户端的语言，不管你是写独立的RN APP或者是像我们集成native中的APP。对于大部分公司的程序员，基本是不可能写ios、android和前端三端代码，至少现在还没遇到过。比较多的是，android客服端的同学学习react或者vue, ios 客户端的同学学习前端的语言。js是个脚本语言，相对门槛还是比较小的。而前端同学如果之前没有基础积累，再去学习客户端，不管是android 或者ios，难度都是非常大的。</p>
+<p>所以这需要一个团队来共同完成，以下是我们的人员配置：</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-team.png" alt=""></p>
+<p>其实在开发过程中，会碰到很多分歧，当谁也无法说服谁的时候，就得找江大了，江大做定夺。</p>
+<p>在开发联调过程中，如果是涉及到协议、规范、结构之类的通用部分，我们会一起协商。但是对于可行性研究，前端不可能同时和IOS、android两端同时进行，我们会选择一端进行，如果通过了才会再在另一端开发。我选择的是IOS，xcode运行内存占比只有几百MB，ASD内存占用就达到2G左右。在mac上启动xcode或者模拟器也会很快。如果是开发，你用Android 真机或者ios 真机就都差不多了，因为不用设计底层开发造成的模拟器频繁代码更新。</p>
+<h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><h3 id="Android的数据统计"><a href="#Android的数据统计" class="headerlink" title="Android的数据统计"></a>Android的数据统计</h3><p>来自宏弘的统计数据</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data1.png" alt=""></p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data2.png" alt=""></p>
+<p>从以上数据来看，RN的整体速度比WebView快了1倍，启动速度会比WebView稍微慢点，原因在于RN的启动需要解析bundle文件，需要耗时。Eatable页面，WebView比RN要快，这块主要是启动时间慢导致，可能原因是bundle文件过大导致解析慢。</p>
+<h3 id="IOS效果对比"><a href="#IOS效果对比" class="headerlink" title="IOS效果对比"></a>IOS效果对比</h3><p>RN底下访问静态页面基本是秒开秒关<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-static.MP4" alt=""></p>
+<p>H5有时候点击了要一段时间才有响应，页面加载速度也会慢一点。<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-dynamic.MP4" alt=""></p>
+<p>在长数据列表页，或者picker选择器等上，原生体验秒杀H5<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-performs.MP4" alt=""></p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p>在框架搭建设计中，得先确定整体的一个流程。当你对整流程有了清晰的认知，对你开发是有很大帮助的。</p>
+<p>开发发布流程：<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic.png" alt=""></p>
+<ol>
+<li>编译打包<ul>
+<li>通过RN提供的命令，先生成bundle文件</li>
+<li>再将编译后的文件进行拆包，根据基础和业务进行拆包，各个依赖的资源文件进行拆封。</li>
+<li>压缩；混淆压缩代码。减小代码量</li>
+<li>打包：并根据不同环境不同版本进行分别打成zip包</li>
+</ul>
+</li>
+<li><p>上传CDN</p>
+<p> 将文件托管于CDN上，更好的请求加载速度</p>
+</li>
+<li><p>服务端配置</p>
+<p> 将上传CDN的地址，配置在服务器上。由相关的权限控制人员在后台服务上配置启停相关RN版本包。<br> 权限管控：开发 和 生产隔离，开发环境上使用的版本由相对应的人员在服务端配置。权限隔离的好处，有助于问题排查，就是责任隔离。</p>
+</li>
+<li><p>解析RN</p>
+<p> 目前的RN的存在，是作为一个替代H5的方案，也就是只有在使用小工具这块中使用。native不管 H5或者 RN都是通过协议去调用唤醒的，所以会先进行一个判断，当使用RN协议并且RN页面存在，就打开RN页面。否则会跳转到H5页面。<br> <img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-native-parseflow.png" alt=""></p>
+</li>
+</ol>
+<h2 id="渲染原理"><a href="#渲染原理" class="headerlink" title="渲染原理"></a>渲染原理</h2><p>RN的编译过程，会将我们页面的React.createElement 来构建应用 UI，最终在render方法返回的都是元组件（view、image、picker等）。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-rendering-principle.png" alt=""></p>
+<p>当我们的页面要在客户端显示，会先在页面的contrller层（android底下是activity类），要new一个View对象。对应的是IOS的RCTRootView.m，android的ReactRootView.java。如果你没学过IOS 和android不要紧，可以理解为是个dom节点。一个页面可以由一个VIEW构成，也可以由多个VIEW构成。所以RN可以是一个页面，也可以是页面中的一小块。比如我们的广告项目在首页的插入就是用RN实现的。在新建view对象时，我们会调用一个引擎类，ios的RCTBridge.m 和android 的ReactInstanceManage.java类，去创建一个jscontext，去加载运行bundle文件。</p>
+<h3 id="交互"><a href="#交互" class="headerlink" title="交互"></a>交互</h3><p>在初始化的过程中会传递参数</p>
+<p>RN 和 Native之间的交互，都是通过Native端提供的MeiyouRNBridge。</p>
+<h3 id="通信协议-网络请求"><a href="#通信协议-网络请求" class="headerlink" title="通信协议/网络请求"></a>通信协议/网络请求</h3><p>协议的使用 或者网络请求，都是通过RN协议桥 MeiyouRNBridge来实现。</p>
+<p>例如：MeiyouRNBridge.showToast(‘请求成功’);MeiyouRNBridge.setTitle(‘测试title’);</p>
+<p>对与网络请求和协议的页面跳转，都在底层进行了相关封装。</p>
+<p>比如下面的RN页面的跳转，你只需要在意模块的路径，名称，页面标题等相关参数，不用在意页面跳转的类型和这些传输的数据结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 跳转RN 页面</div><div class="line"> * @param &#123;string&#125; source 模块路径</div><div class="line"> * @param &#123;string&#125; module 模块名称</div><div class="line"> * @param &#123;string&#125; title 页面标题</div><div class="line"> * @param &#123;object&#125; param 参数</div><div class="line"> * @param &#123;*&#125; info 信息</div><div class="line"> */</div><div class="line">const goRNPage = (source, moduleName, title, param, info) =&gt; &#123;</div><div class="line">  let params = &#123;&#125;;</div><div class="line">  params.source = source;</div><div class="line">  params.moduleName = moduleName;</div><div class="line">  params.title = title;</div><div class="line">  params.params = param;</div><div class="line">  return runAction(&apos;reactnative&apos;, params, info);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>具体可以参考地址：<br><a href="http://git.meiyou.im/iOS/iOS/wikis/work/RN.md" target="_blank" rel="external">http://git.meiyou.im/iOS/iOS/wikis/work/RN.md</a></p>
+<h3 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h3><p>使用native提供的封装的请求方法，而不使用RN提供的方法fetch，native会去请求方法做一些处理。比如拼接系统参数，比如根据所处的环境，比如测试、开发，自动切换不同的地址。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-fetch.png" alt=""></p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>异常有很多种，网络异常，请求异常，解析异常等等，这些都属于逻辑层面的，是我们开发人员关心的。在业务层面只展示一种结果，小柚子找不到了。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-page-no-found.png" alt=""></p>
+<p>所以相关就很好处理了。</p>
+<ul>
+<li>一种写异常组件：Exception.js</li>
+<li>一种是调用native提供的组件：MeiyouRNBridge.setLoadingState(3);</li>
+</ul>
+<p>第一种是可以自己控制范围的，更灵活，例如你有个搜索框和列表，当你按条件搜索时候，出现超时等网络异常，你只要在展示部分显示异常，而不用全页面。<br>第二种是更方便，但通用性差，只要调用提供的桥方法，就能全局覆盖。</p>
+<h3 id="白屏处理"><a href="#白屏处理" class="headerlink" title="白屏处理"></a>白屏处理</h3><p>在native调用RN页面的时候，如果没下载会下载，还会有解析和渲染的过程，所以会出现个loading动画。在早之前，native 在启动加载RN页面后，会隐藏加载动画，杭州的电商那边就是这么做的。但是这其中有个问题，页面的渲染中包含些异步操作，会有一小段时间，也就是在加载动作结束后，会有一小段白屏或者闪屏出现，这个体验就不好了。<br>为了解决体验问题，只能牺牲开发一些原则。native提供了关闭加载动画的方法，由我们自行控制结束动画。</p>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><p>高效 可维护性。对于环境进行配置，<br>一键命令式的完成编译，解析，拆包，拆分资源文件，压缩混淆，打包，清楚缓存等工作。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-pack.png" alt=""></p>
+<p>是否有必要使用云打包，我们只要合并代码进master分支，就会自动触发。</p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>集成矢量小图标<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">Fontawsome</a></p>
+<p>对于Android 和 IOS，都提供了相对应的集成了美柚基本组件库的开发demo, 可以提供给前端开发，调试，基本可以还原美柚经期App的开发场景。</p>
+<h3 id="android"><a href="#android" class="headerlink" title="android"></a>android</h3><p>android 的开发demo如下图,<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/MeiyouReactDemo-android.png" alt=""><br>开启调试模式功能</p>
+<h3 id="IOS"><a href="#IOS" class="headerlink" title="IOS"></a>IOS</h3><p>IOS 的开发demo如下图<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RNManager-ios.png" alt=""></p>
+<h2 id="代码调试"><a href="#代码调试" class="headerlink" title="代码调试"></a>代码调试</h2><p>在模拟器或者真心打开上面的开发demo, android在进入页面后点击标题，ios在电脑模拟器上可以使用快捷键command + d，真机使用手机摇一摇，调出debug页面。有开启调试模式、热更新等等功能，如下图所示</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/MeiyouReactDemo-android-debug.png" alt=""><br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RNManager-ios-debug.png" alt=""></p>
+<p>然后再在浏览器输入 <a href="http://localhost:8081/debugger-ui" target="_blank" rel="external">http://localhost:8081/debugger-ui</a></p>
+<p>可以打断点跟踪，打印日志和平常web开发调试一样，如下图所示：<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-web-debug.png" alt=""></p>
+<p>只是在页面跳转的时候，使用断点监听会红屏警告，只要点击dismiss就可以跳过去，但是会很影响调试。建议测试页面跳转之类的，在跳转到相关页面再打开调试模式。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-bundle-load.jpg" alt=""><br>1、如图所示，JS init+Require，这块时间也就是JSBundle的执行时间，这块耗时是最长的<br>2、bundle文件随业务代码的增加是越来越大，如果每次更新，那耗费的流量会很大。怎么去缩减bundle文件的大小。</p>
+<h3 id="拆包"><a href="#拆包" class="headerlink" title="拆包"></a>拆包</h3><p>拆包的原理：解析</p>
+<p>拆包策略: 按照RN的基础部分 和 业务部分。<br>我们拿一个空的RN包进行打包就能看到，一个bundle包的大小是1.7MB, 打包以后的zip包是400kb左右。而RN这个部分的基础包，只有更新RN版本的时候才会进行更新，而RN版本的更新是不向上兼容的，我们在从0.41升级到0.43的时候，就花了很多时间精力。不仅是前端，android 和ios也是一样的。所以这个部分没有特别的需求或者问题，不会变动。而经过拆包后。<br>基础包208kb, 业务包237kb。解析前index.bundle.js是889kb, 解析后的base.bundle是779kb, 业务index.bundle 是284kb。</p>
+<p>怎么使用：</p>
+<p>一种是在客户端进行物理合并，将bundle文件拼接在一起，讲资源文件放在统一在同一个文件夹下。但是这样做，除了减少网络开销，不会有其他优化的好处，意义不大。所以放弃了。</p>
+<p>另一种是让基础部分和业务部分在同一个作用域中运行。</p>
+<h3 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a>数据缓存</h3><p>对网络请求的方法增加了本地缓存的功能。减少网络请求，加快了网页的响应速度。</p>
+<p>对网络请求的方法进行封装改造，只要配置个属性标志是否需要缓存。如果这个接口是需要缓存的，我会优先读取本地的存储数据，再异步去请求数据，刷新本地的存储数据。这对很多变更性不大的页面会非常大的作用。类似能不能吃的index页面。极大的提高了打开RN页面的时间。</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-data-storage.png" alt=""></p>
+<h3 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h3><p>图片在页面中的比重占比非常大，图片的加载速度直接影响页面的加载渲染效果，所以对于图片的优化也是很重的。</p>
+<p>针对图片的优化，目前从图片的尺寸 和 动态转换webp两方面进行优化。</p>
+<p>关于webp：WebP 格式是 Google 于2010年发布的一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8。</p>
+<p>webp的优势：无损压缩后的 WebP 比 PNG 文件少了 45% 的文件大小，即使 PNG 文件经过其他压缩工具压缩后，WebP 还是可以减少 28% 的文件大小。此外，与 JPEG 相比，在质量相同的情况下，WebP 格式图像的体积要比 JPEG 格式图像小 40%，而 WebP 在压缩方面比 JPEG 格式更优越。</p>
+<p>美柚客户端已经支持webp格式的图片显示，前端针对webp的这种图片格式进行了优化，针对美柚前端大多数图片都是来自于七牛，做了转码动态的支持。</p>
+<p>并设置最大长宽来进一步限制图片大小，对图片裁剪为最大显示的两倍的尺寸。保证清晰度的前提下，优化了图片的大小。</p>
+<p>使用说明：使用封装的MImge组件，可配置needWebp 和设置size大小。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MImage style=&#123;styles.themeIcon&#125; size=&#123;[68,68]&#125; needWebp=&#123;true&#125; source=&#123;&#123;uri: item.icon&#125;&#125;&gt;&lt;/MImage&gt;</div></pre></td></tr></table></figure>
+<p>效果:</p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-webp.png" alt=""></p>
+<h3 id="待优化"><a href="#待优化" class="headerlink" title="待优化"></a>待优化</h3><ol>
+<li><p>版本控制</p>
+<p>如果开发人员在CDN上上传了新版本1.2，在服务器上配置的新地址。客户端的更新机制是，对比版本异同进行更新，原先版本在客户端有缓存，但是针对未及时打开app更新的情况下，如果原地址文件被覆盖更改，就会出问题。</p>
+</li>
+<li>性能优化：可优化空间，具体等上线以后的数据统计报告</li>
+<li>自动化流程</li>
+<li>拆包：commonjs的加载模式，所有的加载运行到内存中，AMD的异步按需加载方式</li>
+<li>文档不全；开发规范，操作指南之类的。</li>
+<li>CDN文件被破坏风险</li>
+<li>安全性优化，对 bundle file MD5，进行 RSA 验证</li>
+<li>框架抽离;可以复用多个项目，单独维护。</li>
+</ol>
+
+        </div>
+        
+        <blockquote class="post-copyright">
+    <div class="content">
+        声明引用：<a href="/27/04/share_react_native/" target="_blank" rel="external">http://www.lixingdecai.com/27/04/share_react_native/</a>
+    </div>
+    <footer>
+        <a href="http://www.lixingdecai.com">
+            <img src="http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg" alt="李姓的菜">
+            李姓的菜
+        </a>
+    </footer>
+</blockquote>
+        
+<div class="post-reward">
+    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript/">javaScript</a></li></ul>
+
+
+            
+<div class="post-share-wrap">
+    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/27/04/about-reference/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">关于对象的声明 定义 引用 赋值 传递</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/17/04/about-use-strict/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">关于ECMAScript 5的严格模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<div class="ds-thread" data-thread-key="share_react_native" data-title="美柚RN前端框架演进" data-url="http://www.lixingdecai.com/27/04/share_react_native/"></div>
+</div>
+<script src="/js/embed.min.js?v=1.1.10"></script>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
+</script>
+
+
+
+
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢爷赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "美柚RN前端框架演进",
+pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://www.lixingdecai.com/27/04/share_react_native/" }
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/js/main.min.js?v=1.1.10"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.1.10"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260833527&web_id=1260833527"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87403984-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>
