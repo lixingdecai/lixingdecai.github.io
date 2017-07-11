@@ -30,9 +30,6 @@
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-team.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data1.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data2.png">
-<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-static.MP4">
-<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-dynamic.MP4">
-<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-performs.MP4">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-native-parseflow.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-rendering-principle.png">
@@ -47,7 +44,7 @@
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-bundle-load.jpg">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-data-storage.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-webp.png">
-<meta property="og:updated_time" content="2017-07-11T03:13:35.000Z">
+<meta property="og:updated_time" content="2017-07-11T03:27:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美柚RN前端框架演进">
 <meta name="twitter:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
@@ -288,9 +285,15 @@
 <p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data1.png" alt=""></p>
 <p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data2.png" alt=""></p>
 <p>从以上数据来看，RN的整体速度比WebView快了1倍，启动速度会比WebView稍微慢点，原因在于RN的启动需要解析bundle文件，需要耗时。Eatable页面，WebView比RN要快，这块主要是启动时间慢导致，可能原因是bundle文件过大导致解析慢。</p>
-<h3 id="IOS效果对比"><a href="#IOS效果对比" class="headerlink" title="IOS效果对比"></a>IOS效果对比</h3><p>RN底下访问静态页面基本是秒开秒关<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-static.MP4" alt=""></p>
-<p>H5有时候点击了要一段时间才有响应，页面加载速度也会慢一点。<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-dynamic.MP4" alt=""></p>
-<p>在长数据列表页，或者picker选择器等上，原生体验秒杀H5<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-performs.MP4" alt=""></p>
+<h3 id="IOS效果对比"><a href="#IOS效果对比" class="headerlink" title="IOS效果对比"></a>IOS效果对比</h3><p>RN底下访问静态页面基本是秒开秒关</p>
+<video src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-static.MP4" controls="controls"><br></video>
+
+<p>H5有时候点击了要一段时间才有响应，页面加载速度也会慢一点。</p>
+<video src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-dynamic.MP4" controls="controls"><br></video>
+
+<p>在长数据列表页，或者picker选择器等上，原生体验秒杀H5</p>
+<video src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-performs.MP4" controls="controls"><br></video>
+
 <h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p>在框架搭建设计中，得先确定整体的一个流程。当你对整流程有了清晰的认知，对你开发是有很大帮助的。</p>
 <p>开发发布流程：<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic.png" alt=""></p>
 <ol>
