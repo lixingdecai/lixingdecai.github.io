@@ -30,21 +30,21 @@
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-team.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data1.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-android-data2.png">
-<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic2.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-native-parseflow.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-rendering-principle.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-fetch.png">
-<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-page-no-found.png">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-page-no-found.jpeg">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-pack.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/MeiyouReactDemo-android.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RNManager-ios.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/MeiyouReactDemo-android-debug.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RNManager-ios-debug.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-web-debug.png">
-<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-bundle-load.jpg">
+<meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/%08RN-bundle-load.jpg">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-data-storage.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-webp.png">
-<meta property="og:updated_time" content="2017-07-11T03:27:54.000Z">
+<meta property="og:updated_time" content="2017-07-11T06:15:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美柚RN前端框架演进">
 <meta name="twitter:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
@@ -295,7 +295,7 @@
 <video src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ios-performs.MP4" controls="controls"><br></video>
 
 <h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p>在框架搭建设计中，得先确定整体的一个流程。当你对整流程有了清晰的认知，对你开发是有很大帮助的。</p>
-<p>开发发布流程：<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic.png" alt=""></p>
+<p>开发发布流程：<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-dev-flow-pic2.png" alt=""></p>
 <ol>
 <li>编译打包<ul>
 <li>通过RN提供的命令，先生成bundle文件</li>
@@ -328,7 +328,7 @@
 <h3 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h3><p>使用native提供的封装的请求方法，而不使用RN提供的方法fetch，native会去请求方法做一些处理。比如拼接系统参数，比如根据所处的环境，比如测试、开发，自动切换不同的地址。</p>
 <p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-fetch.png" alt=""></p>
 <h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>异常有很多种，网络异常，请求异常，解析异常等等，这些都属于逻辑层面的，是我们开发人员关心的。在业务层面只展示一种结果，小柚子找不到了。</p>
-<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-page-no-found.png" alt=""></p>
+<p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-page-no-found.jpeg" alt=""></p>
 <p>所以相关就很好处理了。</p>
 <ul>
 <li>一种写异常组件：Exception.js</li>
@@ -348,7 +348,7 @@
 <p>然后再在浏览器输入 <a href="http://localhost:8081/debugger-ui" target="_blank" rel="external">http://localhost:8081/debugger-ui</a></p>
 <p>可以打断点跟踪，打印日志和平常web开发调试一样，如下图所示：<br><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-web-debug.png" alt=""></p>
 <p>只是在页面跳转的时候，使用断点监听会红屏警告，只要点击dismiss就可以跳过去，但是会很影响调试。建议测试页面跳转之类的，在跳转到相关页面再打开调试模式。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-bundle-load.jpg" alt=""><br>1、如图所示，JS init+Require，这块时间也就是JSBundle的执行时间，这块耗时是最长的<br>2、bundle文件随业务代码的增加是越来越大，如果每次更新，那耗费的流量会很大。怎么去缩减bundle文件的大小。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/%08RN-bundle-load.jpg" alt=""><br>1、如图所示，JS init+Require，这块时间也就是JSBundle的执行时间，这块耗时是最长的<br>2、bundle文件随业务代码的增加是越来越大，如果每次更新，那耗费的流量会很大。怎么去缩减bundle文件的大小。</p>
 <h3 id="拆包"><a href="#拆包" class="headerlink" title="拆包"></a>拆包</h3><p>拆包的原理：解析</p>
 <p>拆包策略: 按照RN的基础部分 和 业务部分。<br>我们拿一个空的RN包进行打包就能看到，一个bundle包的大小是1.7MB, 打包以后的zip包是400kb左右。而RN这个部分的基础包，只有更新RN版本的时候才会进行更新，而RN版本的更新是不向上兼容的，我们在从0.41升级到0.43的时候，就花了很多时间精力。不仅是前端，android 和ios也是一样的。所以这个部分没有特别的需求或者问题，不会变动。而经过拆包后。<br>基础包208kb, 业务包237kb。解析前index.bundle.js是889kb, 解析后的base.bundle是779kb, 业务index.bundle 是284kb。</p>
 <p>怎么使用：</p>
@@ -379,6 +379,7 @@
 <li>安全性优化，对 bundle file MD5，进行 RSA 验证</li>
 <li>框架抽离;可以复用多个项目，单独维护。</li>
 </ol>
+<p>(感谢江大，盛华，宏弘的技术支持)</p>
 
         </div>
         
