@@ -44,7 +44,7 @@
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/%08RN-bundle-load.jpg">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-data-storage.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-webp.png">
-<meta property="og:updated_time" content="2017-07-11T09:11:14.000Z">
+<meta property="og:updated_time" content="2017-07-13T07:17:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美柚RN前端框架演进">
 <meta name="twitter:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
@@ -222,7 +222,7 @@
 </blockquote>
 <p>就算你不懂任何移动端技术，也是可以hold的住的框架。在之前，我有落地过一个INOIC 1的项目，开发体验非常好，上手速度也非常快。INONIC1是基于ng1, IONIC2 是基于ng2。纯前端的开发模式，对前端开发人员的门槛很低，学习成本也很低。他是基于webview进行开发的APP，使用cordova API调用原生的功能。而且极光JPush之类的第三方插件都对IONIC支持，生态链也非常成熟。</p>
 <p>但是唯一的缺陷，也是致命的缺陷就是性能和体验的问题。目前出的IONIC2听说性能有很大改进，但是肯定没办法跟原生的相比。IONIC比较适合于一下小型的APP，和能力有限并且要快速迭代的初创公司。</p>
-<p>ionic ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">优势：</div><div class="line">    ios 和 android 基本上可以共用代码，纯web思维，开发速度快，简单方便，一次编码，到处运行，如果熟悉web开发，则开发难度较低。</div><div class="line">    文档很全，系统级支持封装较好，所有UI组件都是有html模拟，可以统一使用。</div><div class="line">    可实现在线更新 允许加载动态加载web js</div><div class="line">    前端的程序员就可以独立开发</div><div class="line">    文档多，开发者多，视频教程多 容易学习    遇到问题容易解决  技术成熟</div><div class="line">劣势：</div><div class="line">   占用内存高一些（不过手机内存都大了不影响），不适合做游戏类型app，   web技术无法解决一切问题，对于比较耗性能的地方无法利用native的思维实现优势互补，如高体验的交互，动画等。</div></pre></td></tr></table></figure></p>
+<p>网上对ionic的评价：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">优势：</div><div class="line">    ios 和 android 基本上可以共用代码，纯web思维，开发速度快，简单方便，一次编码，到处运行，如果熟悉web开发，则开发难度较低。</div><div class="line">    文档很全，系统级支持封装较好，所有UI组件都是有html模拟，可以统一使用。</div><div class="line">    可实现在线更新 允许加载动态加载web js</div><div class="line">    前端的程序员就可以独立开发</div><div class="line">    文档多，开发者多，视频教程多 容易学习    遇到问题容易解决  技术成熟</div><div class="line">劣势：</div><div class="line">    占用内存高一些（不过手机内存都大了不影响），不适合做游戏类型app，   web技术无法解决一切问题，对于比较耗性能的地方无法利用native的思维实现优势互补，如高体验的交互，动画等。</div></pre></td></tr></table></figure></p>
 <p>Nativescript</p>
 <blockquote>
 <p>cross-platform mobile applications</p>
@@ -247,10 +247,9 @@
 <li>生态链欠成熟；pull request 没有响应，论坛的提问也是过两天自己回答。</li>
 <li>文档不全；刚好也碰到weex官方支持vue，在官方文档也在升级支持vue，然后我们刚好是使用的最新支持vue开发的版本。官放说明文档很不全，得新老切换这看。</li>
 <li>团队对阿里开源的畏惧；好像都吃过阿里开源项目的亏，阿里KPI项目的尿性也是众人皆知了。又值阿里将weex贡献给apache时间节点，心里怕怕的。</li>
-<li>能力不够；其实最关键还是我们能力的问题，我们没有那么多时间、精力、人力耗在这个上面。公司也不会允许我们无休止的研究开发，我们也是有KPI压力的。</li>
+<li>能力不够；怕自己hold不住；其实最关键还是我们能力的问题，我们没有那么多时间、精力、人力耗在这个上面。不希望这个月绩效为0分；</li>
 <li>页面效果不理想；我们拿贴士的页面入手，但是出来的效果，在IOS上显示差异很大。</li>
 </ol>
-<p>将美柚的今日贴士的页面，android下还是比较好的，但在ios下就完全乱了。官网文档和版本对应不上，很多问题网上都没有解答，社区响应速度很慢，有两个问题，我自己在社区上提问，然后过一两天解决了自己再去回答。当我们最后看到weex在ios上的展示的效果后，没有去找原因，几个大佬还有我们两个开发人员考虑一致决定弃坑。因为人力维护不起，因为不是write once, run anywhere。</p>
 <p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-1.JPG" alt=""></p>
 <p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-2.JPG" alt=""></p>
 <p><img src="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-ios-1.png" alt=""></p>
