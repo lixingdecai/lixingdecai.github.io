@@ -12,14 +12,14 @@
   
   
   <meta name="keywords" content="javaScript">
-  <meta name="description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
-台前幕后痛点：在做这个">
+  <meta name="description" content="美柚其实在具有热更新功能的混合应用技术运用中算比较晚了，经过一系列的调研准备，于今年的3月份，开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
+台前幕后痛点：在做这个事情前，我们先要明确我们要做这个事情的原因和目的，我们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="美柚RN前端框架演进">
-<meta property="og:url" content="http://www.lixingdecai.com/27/04/share_react_native/index.html">
+<meta property="og:url" content="http://www.lixingdecai.com/02/07/share_react_native/index.html">
 <meta property="og:site_name" content="李姓的菜の博客">
-<meta property="og:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
-台前幕后痛点：在做这个">
+<meta property="og:description" content="美柚其实在具有热更新功能的混合应用技术运用中算比较晚了，经过一系列的调研准备，于今年的3月份，开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
+台前幕后痛点：在做这个事情前，我们先要明确我们要做这个事情的原因和目的，我们">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-position.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-ionic-weex-ns.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/tips-android-1.JPG">
@@ -44,11 +44,11 @@
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/%08RN-bundle-load.jpg">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-data-storage.png">
 <meta property="og:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/rn-webp.png">
-<meta property="og:updated_time" content="2017-07-13T07:17:16.000Z">
+<meta property="og:updated_time" content="2017-08-14T13:32:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美柚RN前端框架演进">
-<meta name="twitter:description" content="市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
-台前幕后痛点：在做这个">
+<meta name="twitter:description" content="美柚其实在具有热更新功能的混合应用技术运用中算比较晚了，经过一系列的调研准备，于今年的3月份，开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。
+台前幕后痛点：在做这个事情前，我们先要明确我们要做这个事情的原因和目的，我们">
 <meta name="twitter:image" content="http://oi2p38ffx.bkt.clouddn.com/lixingdecai.com/qimage/article/RN-position.png">
   
     <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
@@ -164,8 +164,8 @@
         <h1 class="title">美柚RN前端框架演进</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-04-27T13:22:05.000Z" itemprop="datePublished" class="page-time">
-  2017-04-27
+                <time datetime="2017-07-02T13:22:05.000Z" itemprop="datePublished" class="page-time">
+  2017-07-02
 </time>
 
 
@@ -193,8 +193,8 @@
     <div class="post-card">
         <h1 class="post-card-title">美柚RN前端框架演进</h1>
         <div class="post-meta">
-            <time datetime="2017-04-27T13:22:05.000Z" itemprop="datePublished" class="post-time">
-  2017-04-27
+            <time datetime="2017-07-02T13:22:05.000Z" itemprop="datePublished" class="post-time">
+  2017-07-02
 </time>
 
             
@@ -202,7 +202,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>市场上热更新技术的解决方案已经有挺多，reactnative已经比较成熟，市面上已经得到了很多广泛的使用。美柚其实算比较晚了，于今年的3月份开始，才开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。</p>
+            <p>美柚其实在具有热更新功能的混合应用技术运用中算比较晚了，经过一系列的调研准备，于今年的3月份，开始在美柚APP上使用RN框架(去年9月，有在杭州电商里面使用了几个RN的页面，但只是粗略应用)。因为大家都没有什么经验，基本都是摸着石头过河进行尝试。<br>这篇文章就是用来记录基于美柚APP的RN框架从0到1的一个开发和设计的过程。</p>
 <h1 id="台前幕后"><a href="#台前幕后" class="headerlink" title="台前幕后"></a>台前幕后</h1><h2 id="痛点："><a href="#痛点：" class="headerlink" title="痛点："></a>痛点：</h2><p>在做这个事情前，我们先要明确我们要做这个事情的原因和目的，我们为什么要这么做。</p>
 <ol>
 <li>开发维护成本太高：要开发维护两套代码，而且原生在开发用户界面上的成本非常高，我之前写android页面你写个样式的编写维护好几个xml文件，不同的列表数据还得写不同类型的适配器。开发维护成本比web的页面开发高很多。</li>
@@ -384,7 +384,7 @@
         
         <blockquote class="post-copyright">
     <div class="content">
-        声明引用：<a href="/27/04/share_react_native/" target="_blank" rel="external">http://www.lixingdecai.com/27/04/share_react_native/</a>
+        声明引用：<a href="/02/07/share_react_native/" target="_blank" rel="external">http://www.lixingdecai.com/02/07/share_react_native/</a>
     </div>
     <footer>
         <a href="http://www.lixingdecai.com">
@@ -452,21 +452,14 @@
     </div>   
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/27/04/about-reference/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">关于对象的声明 定义 引用 赋值 传递</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/17/04/about-use-strict/" id="post-next" class="post-nav-link">
+      <a href="/27/04/about-reference/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">关于ECMAScript 5的严格模式</h4>
+        <h4 class="title">关于对象的声明 定义 引用 赋值 传递</h4>
       </a>
     </div>
   
@@ -476,7 +469,7 @@
             
     
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="share_react_native" data-title="美柚RN前端框架演进" data-url="http://www.lixingdecai.com/27/04/share_react_native/"></div>
+	<div class="ds-thread" data-thread-key="share_react_native" data-title="美柚RN前端框架演进" data-url="http://www.lixingdecai.com/02/07/share_react_native/"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.10"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -524,7 +517,7 @@ BLOG.SHARE = {
 title: "美柚RN前端框架演进",
 pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
 summary: document.getElementsByName('summary')[0].content,
-url: "http://www.lixingdecai.com/27/04/share_react_native/" }
+url: "http://www.lixingdecai.com/02/07/share_react_native/" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
