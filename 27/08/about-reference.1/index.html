@@ -5,26 +5,47 @@
   
   
   
-  <title>关于对象的声明 定义 引用 赋值 传递 | 李姓的菜の博客 | 个人博客</title>
+  <title>正则表达式学习笔记 | 李姓的菜の博客 | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#ff5073">
   
   
   <meta name="keywords" content="javaScript,对象">
-  <meta name="description" content="声明、定义、引用、赋值这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。
-申明申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const">
+  <meta name="description" content="正则表达式 RegExp
+目录
+1. 介绍
+2. 语法
+3. 高级语法
+4. 使用
+
+1. 介绍
+正则表达式，又称正规表示式、正规表示法、正规表达式、规则表达式、常规表示法（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于对象的声明 定义 引用 赋值 传递">
+<meta property="og:title" content="正则表达式学习笔记">
 <meta property="og:url" content="http://www.lixingdecai.com/27/08/about-reference.1/index.html">
 <meta property="og:site_name" content="李姓的菜の博客">
-<meta property="og:description" content="声明、定义、引用、赋值这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。
-申明申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const">
-<meta property="og:updated_time" content="2017-08-29T14:51:40.000Z">
+<meta property="og:description" content="正则表达式 RegExp
+目录
+1. 介绍
+2. 语法
+3. 高级语法
+4. 使用
+
+1. 介绍
+正则表达式，又称正规表示式、正规表示法、正规表达式、规则表达式、常规表示法（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来">
+<meta property="og:updated_time" content="2017-08-29T14:53:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于对象的声明 定义 引用 赋值 传递">
-<meta name="twitter:description" content="声明、定义、引用、赋值这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。
-申明申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const">
+<meta name="twitter:title" content="正则表达式学习笔记">
+<meta name="twitter:description" content="正则表达式 RegExp
+目录
+1. 介绍
+2. 语法
+3. 高级语法
+4. 使用
+
+1. 介绍
+正则表达式，又称正规表示式、正规表示法、正规表达式、规则表达式、常规表示法（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来">
   
     <link rel="alternative" href="/atom.xml" title="李姓的菜の博客" type="application/atom+xml">
   
@@ -114,7 +135,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">关于对象的声明 定义 引用 赋值 传递</div>
+        <div class="flex-col header-title ellipsis">正则表达式学习笔记</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -136,7 +157,7 @@
 <header class="content-header post-header">
 
     <div class="container">
-        <h1 class="title">关于对象的声明 定义 引用 赋值 传递</h1>
+        <h1 class="title">正则表达式学习笔记</h1>
         <h5 class="subtitle">
             
                 <time datetime="2017-08-27T13:22:05.000Z" itemprop="datePublished" class="page-time">
@@ -158,7 +179,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#声明、定义、引用、赋值"><span class="post-toc-number">1.</span> <span class="post-toc-text">声明、定义、引用、赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#申明"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">申明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于对象的引用赋值"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">关于对象的引用赋值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#传递"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">传递</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按值传递"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">按值传递</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按引用传递"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">按引用传递</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#克隆"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">克隆</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#目录"><span class="post-toc-number">1.</span> <span class="post-toc-text">目录</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. 介绍</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-语法"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. 语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-元字符"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1 元字符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-字符集"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.2 字符集</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-修饰符"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">2.3 修饰符</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-高级语法"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. 高级语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-replace-多参数匹配"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 replace 多参数匹配</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#零宽断言"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">零宽断言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#负向零宽断言"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">负向零宽断言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#贪婪与懒惰"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">贪婪与懒惰</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-使用"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. 使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-正则在js中的使用"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">4.1 正则在js中的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RegExp"><span class="post-toc-number">5.1.1.</span> <span class="post-toc-text">RegExp</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String"><span class="post-toc-number">5.1.2.</span> <span class="post-toc-text">String</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-正则表达式的应用场景"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">4.2 正则表达式的应用场景</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -166,7 +187,7 @@
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">关于对象的声明 定义 引用 赋值 传递</h1>
+        <h1 class="post-card-title">正则表达式学习笔记</h1>
         <div class="post-meta">
             <time datetime="2017-08-27T13:22:05.000Z" itemprop="datePublished" class="post-time">
   2017-08-27
@@ -177,35 +198,208 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="声明、定义、引用、赋值"><a href="#声明、定义、引用、赋值" class="headerlink" title="声明、定义、引用、赋值"></a>声明、定义、引用、赋值</h1><p>这几个名词经常出现 应该都很熟悉，但放在一起，你们会知道这其中的差别吗。</p>
-<h2 id="申明"><a href="#申明" class="headerlink" title="申明"></a>申明</h2><p>申明：声明语句是本身什么也没有实现，只是通过创建变量和函数。查找栈内存，如果不存在创建的对象，则创建，并指向undefined。<br>var、function、let、const都是声明语句，var 和 let 是用来申明变量的，只是let是es6新增的命令。function 是用来定义函数的。const 是用来申明常量的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let 和 var 的区别</div><div class="line">------ let --------</div><div class="line">var a = [];</div><div class="line">for (var i = 0; i &lt; 10; i++)&#123;</div><div class="line">  a[i] = function () &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">a[6]();           // 10</div><div class="line"></div><div class="line">------ var -------</div><div class="line">var a = [];</div><div class="line">for (let i = 0; i &lt; 10; i++) &#123;</div><div class="line">  a[i] = function() &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a[6]();           // 6</div></pre></td></tr></table></figure>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>函数的定义和函数的声明</p>
-<p>函数的定义表达式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var square = function (x) &#123; return x * x; &#125;</div></pre></td></tr></table></figure></p>
-<p>函数申明语句的语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function functionName ([args1,[args2,[..., argsn]]]) &#123;</div><div class="line">  statements;</div><div class="line">&#125;</div><div class="line"></div><div class="line">例子：</div><div class="line">function factorial(n) &#123;</div><div class="line">  if (n &lt;= 1) return n;</div><div class="line">  return n * factorial(n-1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="关于对象的引用赋值"><a href="#关于对象的引用赋值" class="headerlink" title="关于对象的引用赋值"></a>关于对象的引用赋值</h2><p>引用赋值看起来好像很简单，但是背后还是有些东西不搞明白，还是很容易搞糊涂的。比如你先得弄清楚对象的内存的堆栈是怎么存储的。这很关键。</p>
-<p>原始类型：number、string、boolean、null、undefined</p>
-<p>对象类型：属性集合、函数、数组、日期、正则、error</p>
-<p>原始值是不可变得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &apos;hello&apos;             // 定义一个由小写</div><div class="line">a.toSuperCase();            // 返回 HELLO</div><div class="line">s                           // s 还是 hello</div></pre></td></tr></table></figure></p>
-<p>通常将对象称为引用类型 (reference type), 对象的值都是引用，对象的比较都是引用的比较。</p>
-<p>可变的对象引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a =  [];        // | —---堆----- |   | ----栈---- |</div><div class="line">var b = a;          // |  a          |--&gt;|  []       |</div><div class="line">b[0] = 1;           // |  b指向a的引用 |   |           |</div><div class="line">a[0]                // |            a|   |           |</div><div class="line"></div><div class="line">a === b</div></pre></td></tr></table></figure>
-<p>变量的声明<br>var a;<br>var a = 0, b = 0;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var scope = &apos;global&apos;;</div><div class="line">function () &#123;</div><div class="line">    console.log(scope);</div><div class="line">    var scope = &apos;local&apos;;</div><div class="line">    console.log(scope);</div><div class="line">&#125;</div><div class="line">// 输出</div><div class="line">// undefined        变量提升，块级作用域变量覆盖全局作用域同名变量</div><div class="line">// local、、、</div></pre></td></tr></table></figure>
-<p>es5 和es 6中变量提升的区别：</p>
-<p>es5的var 中存在变量提升，可以在变量声明前使用;<br>es6的const、let两种命令不存在变量提升，不能再变量声明前使用变量；</p>
-<h2 id="传递"><a href="#传递" class="headerlink" title="传递"></a>传递</h2><h3 id="按值传递"><a href="#按值传递" class="headerlink" title="按值传递"></a>按值传递</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function a(str) &#123;</div><div class="line">  str = str + &quot;5678&quot;;</div><div class="line">  console.log(str);</div><div class="line">  return str;</div><div class="line">&#125;</div><div class="line">var s = &quot;1234&quot;;</div><div class="line">console.log(&apos;aaaa&apos;,a(s), s);</div><div class="line"></div><div class="line">// 打印的结果</div><div class="line">12345678</div><div class="line">aaaa 12345678 1234</div></pre></td></tr></table></figure>
-<p>如上代码中可以得到结果，如果是按值传递，不管方法a中的赋值结果如何，都不会改变方法外部的变量值。</p>
-<p>哪些是按值传递的呢？<br>原始类型（number、string、boolean、null、undefined）的这五种类型是按值传递的。原始类型在内存中是存在栈中，而对象类型是存储在堆内存中，理解对象的内存存储可以让你对传递的概念等有很好的帮助。</p>
-<h3 id="按引用传递"><a href="#按引用传递" class="headerlink" title="按引用传递"></a>按引用传递</h3><p>看看下面这个练习题的打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3, 4];</div><div class="line"></div><div class="line">function a (input) &#123;</div><div class="line">  return input.push([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">function b (input) &#123;</div><div class="line">  input = &apos;2234&apos;</div><div class="line">  return [input].concat([5, 6, 7, 8])</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(&apos;aaa&apos;, a(arr), arr);</div><div class="line">console.log(&apos;------------&apos;);</div><div class="line">console.log(&apos;bbbb&apos;, b(arr), arr);</div><div class="line"></div><div class="line">// 打印结果</div><div class="line">// aaaa 5 [1, 2, 3, 4, [5, 6, 7, 8]]</div><div class="line">// ------------</div><div class="line">// bbbb [&quot;2234&quot;, 5, 6, 7, 8] [1, 2, 3, 4]</div></pre></td></tr></table></figure></p>
-<p>aaaa</p>
-<p>list是个Object, 它的值存在堆内存中，arr指向堆内存的地址，arr的值变了，arr也就跟着变了。这就是引用传递。</p>
-<p>其中的5是list.push返回的数组长度 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="external">Array.prototype.push()</a></p>
-<p>bbbb </p>
-<p>当函数内部对其重新赋值（即newValue !== oldValue），传入的外部变量不会受影响； <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="external">Array.prototype.push()</a></p>
-<h2 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h2><p>针对对象的引用传递，改变的是引用的值，无法创建一个一样的对象。有两个解决方法，一种是自己写的克隆的方法 ，一种<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" target="_blank" rel="external">Object.assign()</a></p>
-<p>不过两种都有缺点，自己写clone比较麻烦，下面代码里的兼容性也不好，arguments.callee在ES 5的严格模式中是背禁用的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">深度拷贝方法1</div><div class="line">  function clone(obj)</div><div class="line">  &#123;</div><div class="line">    var o,i,j,k;</div><div class="line">    if(typeof(obj)!=&quot;object&quot; || obj===null)return obj;</div><div class="line">    if(obj instanceof(Array))</div><div class="line">    &#123;</div><div class="line">      o=[];</div><div class="line">      i=0;j=obj.length;</div><div class="line">      for(;i&lt;j;i++)</div><div class="line">      &#123;</div><div class="line">        if(typeof(obj[i])==&quot;object&quot; &amp;&amp; obj[i]!=null)</div><div class="line">        &#123;</div><div class="line">          o[i]=arguments.callee(obj[i]);</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          o[i]=obj[i];</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    else</div><div class="line">    &#123;</div><div class="line">      o=&#123;&#125;;</div><div class="line">      for(i in obj)</div><div class="line">      &#123;</div><div class="line">        if(typeof(obj[i])==&quot;object&quot; &amp;&amp; obj[i]!=null)</div><div class="line">        &#123;</div><div class="line">          o[i]=arguments.callee(obj[i]);</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          o[i]=obj[i];</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    return o;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  深度拷贝方法2</div><div class="line">  var deepCopy= function(source) &#123; </div><div class="line">    var result=&#123;&#125;;</div><div class="line">    for (var key in source) &#123;</div><div class="line">          result[key] = typeof source[key]===’object’? deepCoyp(source[key]): source[key];</div><div class="line">      &#125; </div><div class="line">    return result; </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+            <p>正则表达式 <code>RegExp</code></p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#1-介绍">1. 介绍</a></li>
+<li><a href="#2-语法">2. 语法</a></li>
+<li><a href="#3-高级语法">3. 高级语法</a></li>
+<li><a href="#4-使用">4. 使用</a></li>
+</ul>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><blockquote>
+<p>正则表达式，又称正规表示式、正规表示法、正规表达式、规则表达式、常规表示法（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些匹配某个模式的文本。</p>
+</blockquote>
+<p>正则表达式不是js、java或者其他某一种计算机语言特有，而是不同语言中都有，例如Python、php、Ruby、C++……，是用来处理文本的一种特定语法规则。</p>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-元字符"><a href="#2-1-元字符" class="headerlink" title="2.1 元字符"></a>2.1 元字符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td>句号匹配任意单个字符，除了换行符</td>
+</tr>
+<tr>
+<td style="text-align:center">[ ]</td>
+<td>字符种类. 匹配方括号内的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^ ]</td>
+<td>否定的字符种类. 匹配除了方括号内的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td>匹配&gt;=0个重复在<code>*</code>号前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td>匹配&gt;=1个<code>+</code>号前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">{n, m}</td>
+<td>n是min最小数量，m为max为最大数量，匹配这个区间个数的中括号前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td>标记<code>?</code>之前的字符为可选; 等价于 {0,1}。</td>
+</tr>
+<tr>
+<td style="text-align:center">(xyz)</td>
+<td>字符集，匹配与xyz完全相等的字符  <br> 模式 /(foo) (bar) \1 \2/ 中的 ‘(foo)’ 和 ‘(bar)’ 匹配并记住字符串 “foo bar foo bar” 中前两个单词。模式中的 \1 和 \2 匹配字符串的后两个单词。注意 \1、\2、\n 是用在正则表达式的匹配环节。在正则表达式的替换环节，则要使用像 $1、$2、$n 这样的语法 ，例如，’bar foo’.replace( /(…) (…)/, ‘$2 $1’ )。 <br> <a href="#31-replace--"> 3. 1 replace 多参数匹配</a></td>
+</tr>
+<tr>
+<td style="text-align:center">&#92;</td>
+<td>转义字符,用于匹配一些保留的字符 <code>[ ] ( ) { } . * + ? ^ $ \ &#124;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td>匹配输入的开始。如果多行标志被设置为true，那么也匹配换行符后紧跟的位置。<br>例如，/^A/ 并不会匹配 “an A” 中的 ‘A’，但是会匹配 “An E” 中的 ‘A’。<br>当 ‘^’ 作为第一个字符出现在一个字符集合模式时，它将会有不同的含义</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td>匹配输入的结束。如果多行标示被设置为true，那么也匹配换行符前的位置。<br>例如，/t$/ 并不会匹配 “eater” 中的 ‘t’，但是会匹配 “eat” 中的 ‘t’。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-2-字符集"><a href="#2-2-字符集" class="headerlink" title="2.2 字符集"></a>2.2 字符集</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">简写</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\w</td>
+<td>匹配一个单字字符：数字、字幕或下滑线； 等价月[A-Za-z0-9_]</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>匹配非单字字符，等价于[^A-Za-z0-9_]</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td>匹配一个数字，等价于[0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td>匹配一个非数字字符，等价于[^0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td>匹配一个空白字符, 包括空格、制表符、换页符和换行符</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td>匹配一个非空白字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">\f</td>
+<td>匹配一个换页符</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>匹配一个换行符</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td>匹配一个回车符</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td>匹配一个水平制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\v</td>
+<td>匹配一个垂直制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\p</td>
+<td>匹配 CR/LF (等同于 <code>\r\n</code>)，用来匹配 DOS 行终止符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-3-修饰符"><a href="#2-3-修饰符" class="headerlink" title="2.3 修饰符"></a>2.3 修饰符</h2><p>正则表达式的修饰符，修饰符放在’/‘符号之外，JavaScript支持三个修饰符</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">执行不区分大小写的匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:left">执行一个全局的匹配；查找所有的匹配，而不是找到第一个之后就停止</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:left">多行匹配;<br>例如：/java$/im 可以匹配’java’, 也可以匹配“java\nis fun”</td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-高级语法"><a href="#3-高级语法" class="headerlink" title="3. 高级语法"></a>3. 高级语法</h1><h2 id="3-1-replace-多参数匹配"><a href="#3-1-replace-多参数匹配" class="headerlink" title="3.1 replace 多参数匹配"></a>3.1 replace 多参数匹配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function replacer(match, p1, p2, p3, offset, string) &#123;</div><div class="line">  // p1 is nondigits, p2 digits, and p3 non-alphanumerics</div><div class="line">  return [p1, p2, p3].join(&apos; - &apos;);</div><div class="line">&#125;</div><div class="line">var newString = &apos;abc12345#$*%&apos;.replace(/([^\d]*)(\d*)([^\w]*)/, replacer);</div><div class="line">// 输出结果：</div><div class="line">// abc - 12345 - #$*%</div></pre></td></tr></table></figure>
+<h2 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h2><blockquote>
+<p>用于指定一个位置，这个位置应该满足一定的条件(即断言)，因此它们也被称为零宽断言</p>
+</blockquote>
+<p><code>(?=exp)</code> 也叫零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。</p>
+<p>例如：/[Jj]ava([Ss]cript)?(?=\:)/  可以匹配”JavaScript: The Definitive Guide” 中的 “JavaScript”；但是不能匹配”Java in a Nutshell” 中的 “Java”，因为没有匹配断言中的“：”</p>
+<h2 id="负向零宽断言"><a href="#负向零宽断言" class="headerlink" title="负向零宽断言"></a>负向零宽断言</h2><blockquote>
+<p>零宽断言的相反，指定位置不包含满足条件的；<code>(?! exp)</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var reg = /Java(?!Script)([A-Z\w*]+)/g; // 匹配Java后面没跟有&quot;Script&quot;</div><div class="line"></div><div class="line">var str = &quot;a JavaScript Javaas&quot;;</div><div class="line"></div><div class="line">str.match(reg);         // 返回 [&quot;Javaas&quot;]</div></pre></td></tr></table></figure>
+<h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><h1 id="4-使用"><a href="#4-使用" class="headerlink" title="4. 使用"></a>4. 使用</h1><h2 id="4-1-正则在js中的使用"><a href="#4-1-正则在js中的使用" class="headerlink" title="4.1 正则在js中的使用"></a>4.1 正则在js中的使用</h2><p>正则在JavaScript里面的使用，有两种形式:</p>
+<p>+.  一种是RegExp() 的<code>exec()</code> 和 <code>test()</code><br>+.  一种是String的match、split、replace、search</p>
+<h3 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h3><p>正则表达式也是JavaScript对象。RegExp() 构造函数带有两个参数，第一个参数是正则表达式的直接量，也就是两条斜线中间的文本，但是转义字符需要单斜线改为双斜线：<code>&#39;\&#39; --&gt; &#39;\\&#39;</code>；第二个参数是可选的，也就是正则表达式的修饰符，也就是上面提到的g、i、m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">例子： </div><div class="line">   let regexp1 = new RegExp(&apos;ab+c&apos;);</div><div class="line">   let regexp2 = new RegExp(&apos;\\d&#123;5&#125;&apos;, &apos;g&apos;);</div><div class="line">   let regexp3 = new RegExp(/^[a-zA-Z]+[0-9]*\W+_$/, &quot;gi&quot;); // 匹配&apos;abc123*_&apos;</div><div class="line">   let regexp4 = new RegExp(&quot;^[a-zA-Z]+[0-9]*\W+_$&quot;, &quot;gi&quot;); // 这个正则其实和上面的例子其实是不相等的，需要将\W+ 改为 \\W+</div></pre></td></tr></table></figure></p>
+<p><code>test()</code> 用法: 参数是字符串，结果返回boolean，如果符合正则表达式则返回true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let regexp1 = new RegExp(&apos;ab+c&apos;);</div><div class="line">regexp1.test(&apos;abbc&apos;); // false</div><div class="line">regexp1.test(&apos;abbc&apos;); // true</div></pre></td></tr></table></figure></p>
+<p><code>exec()</code> 用法:</p>
+<blockquote>
+<p>regexObj.exec(str)  匹配失败返回null、匹配成功返回一个数组</p>
+</blockquote>
+<p>这是个比较稍微难理解的使用方法，但是使用确实很频繁，因为实用。<br>首先，匹配失败返回null，成功是返回的是一个数组类型<br>其次，既然是数组，那肯定可能就有多个结果；<br><br>     数组的第一位，是与正则表达式相匹配的字符串; <br><br>     数组的第二位和之后的，是正则表达式”( )”中相匹配的；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var re = /quick\s(brown).+?(jumps)/ig;</div><div class="line">var result = re.exec(&apos;The Quick Brown Fox Jumps Over The Lazy Dog&apos;);</div><div class="line">console.log(result)</div><div class="line"></div><div class="line">// console： [&quot;Quick Brown Fox Jumps&quot;, &quot;Brown&quot;, &quot;Jumps&quot;]</div><div class="line">// 数组第一位是正则匹配，第二位 和第三位 对应正则里的两个”（）“</div></pre></td></tr></table></figure>
+<p>很常见到exec会在while循环里使用；当正则表达式使用 “g” 标志时，可以<code>多次</code>执行 exec 方法来查找同一个字符串中的成功匹配。当你这样做时，查找将从正则表达式的  lastIndex 属性指定的位置开始。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var myRe = /ab*/g;</div><div class="line">var str = &apos;abbcdefabh&apos;;</div><div class="line">var myArray;</div><div class="line">while ((myArray = myRe.exec(str)) !== null) &#123;</div><div class="line">  var msg = &apos;匹配到的数据是 -&gt; &apos; + myArray[0] + &apos;. &apos;;</div><div class="line">  msg += &apos;| 下一次匹配位置 -&gt; &apos; + myRe.lastIndex;</div><div class="line">  console.log(msg);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// console 打印:</div><div class="line">// 匹配到的数据是 -&gt; abb. | 下一次匹配位置 -&gt; 3</div><div class="line">// 匹配到的数据是 -&gt; ab. | 下一次匹配位置 -&gt; 9</div></pre></td></tr></table></figure>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><blockquote>
+<p><code>search()</code> 参数是正则表达式，返回一个素质，找不到返回-1，找到返回匹配的起始位置; 如果参数不是正则表达式，会RegExp构造函数转换成正则表达式。不支持全局搜索，忽略正则表达式上的修饰符g；</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;JavaScript&quot;.search(&apos;/vaS/i&apos;);</div><div class="line"></div><div class="line">// 结果 return 2；</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>replace()</code>, 两个参数，第一个正则表达式，第二个是需要替换的字符。如果第一个参数是字符串不是正则表达式，replace不会将字符串转化为RegExp(),而是直接搜索该字符串，如果不是g 全局匹配，replace只会替换第一个匹配的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">基本用法：</div><div class="line">&quot;javascript is the best language&quot;.replace(/javascript/gi, &quot;JavaScript&quot;);</div><div class="line"></div><div class="line">高级用法：</div><div class="line"></div><div class="line">var a = &quot;\&quot;bich\&quot; go die&quot;</div><div class="line"></div><div class="line">// $1 代表子表达式(exp)匹配的字符</div><div class="line">// 将bich保存在$1中 不被修改</div><div class="line">var b = a.replace(/&quot;([^&quot;]*)&quot;/, &apos;“$1”&apos;); </div><div class="line">console.log(b)</div><div class="line"></div><div class="line">// console结果：中文半角引号替换英文引号，引号内容不变 </div><div class="line">// “bich” go die</div></pre></td></tr></table></figure>
+<p><code>split()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var text = &quot;1, 2, 3, 4&quot;</div><div class="line">var result = text.split(/\s*,\s*/);      // 去除空格</div><div class="line">console.log(result)                          // 返回[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;]</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>match()</code> 参数为正则表达，如果是字符串也会转成RegExp()对象，返回是数组类型，包含所有匹配的结果，如果没有设置全局搜索的修饰符g，只会返回只包含第一个匹配的数组;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//一个具有字表达的match例子</div><div class="line"></div><div class="line">var url = /(\w+):\/\/([\w.]+)\/(\S*)/;</div><div class="line">var URLText = &apos;Visit my blog http://lixingdecai.com/home&apos;</div><div class="line">var result = URLText.match(url)</div><div class="line">if(result != null) &#123;</div><div class="line">  console.log(result[0]);     // 第一个位置存储完整的匹配结果</div><div class="line">  console.log(result[1]);      // 存放第一个子表达式匹配的结果</div><div class="line">  console.log(result[2]);     // 存放第二个子表达式 也就是(exp)匹配的，后面以此类推</div><div class="line">  console.log(result[3]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// console结果</div><div class="line">// http://lixingdecai.com/home</div><div class="line">// http</div><div class="line">// lixingdecai.com</div><div class="line">// home</div></pre></td></tr></table></figure>
+<h2 id="4-2-正则表达式的应用场景"><a href="#4-2-正则表达式的应用场景" class="headerlink" title="4.2 正则表达式的应用场景"></a>4.2 正则表达式的应用场景</h2><ol>
+<li>web 表单校验</li>
+</ol>
+<p>我们前端工程师非常熟悉的表单校验，要校验是否输入纯数字、合法身份证、合法手机号等等、</p>
+<ol>
+<li>CSS 选择器引擎</li>
+</ol>
+<p>几乎所有的 CSS 选择器引擎会使用正则表达式。jQuery 所使用的选择器引擎 Sizzle.js 使用了大量的正则表达式以匹配各式各样的 CSS 选择器。</p>
+<ol>
+<li>爬虫</li>
+</ol>
+<p>你要从一网页中截取有效信息，大部分爬虫都是使用正则表达式去匹配提取需要的信息</p>
+<ol>
+<li>编译器</li>
+</ol>
+<p>在高级点使用，如编译器，大部分编译型编程语言设计的程序在执行之前要经历三个步骤：</p>
+<p>+.    分词/词法分析<br>+.    语法分析，生成抽象语法树（AST）<br>+.    翻译为字节码/机器码</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions#note" target="_blank" rel="external">JS 正在表达式 MDN</a></p>
+<p><a href="https://github.com/zeeshanu/learn-regex" target="_blank" rel="external">learn-regex</a></p>
+
         </div>
         
         <blockquote class="post-copyright">
@@ -295,7 +489,7 @@
             
     
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="about-reference.1" data-title="关于对象的声明 定义 引用 赋值 传递" data-url="http://www.lixingdecai.com/27/08/about-reference.1/"></div>
+	<div class="ds-thread" data-thread-key="about-reference.1" data-title="正则表达式学习笔记" data-url="http://www.lixingdecai.com/27/08/about-reference.1/"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.10"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -340,7 +534,7 @@ var duoshuoQuery = {short_name:'lixingdecai', theme: 'none'}
 
 <script>var BLOG = { ROOT: '/' };
 BLOG.SHARE = {
-title: "关于对象的声明 定义 引用 赋值 传递",
+title: "正则表达式学习笔记",
 pic: "http://ww4.sinaimg.cn/thumb150/be108d3djw8f3lrb2hadnj204x064jrb.jpg",
 summary: document.getElementsByName('summary')[0].content,
 url: "http://www.lixingdecai.com/27/08/about-reference.1/" }
