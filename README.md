@@ -5,3 +5,5 @@
                                             -- 阮一峰
 
 [《五分钟搭建自己的快应用》](https://github.com/lixingdecai/lixingdecai.github.io/issues/19)
+[《直播答题 《百万女王》 - 技术复盘 #15
+》](https://github.com/lixingdecai/lixingdecai.github.io/issues/15)
